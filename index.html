@@ -7,200 +7,179 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
+      line-height: 1.6;
+      background-color: #f9f9f9;
       color: #333;
     }
-
     header {
-      background: #007bff;
-      color: white;
-      padding: 20px;
+      background-color: #222;
+      color: #fff;
+      padding: 2rem;
       text-align: center;
     }
-
-    h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    .section {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #007bff;
-    }
-
-    .package {
-      border: 2px solid #007bff;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 15px 0;
-    }
-
-    .package h3 {
-      margin: 0 0 10px 0;
-      color: #007bff;
-    }
-
-    .package ul {
-      padding-left: 20px;
-    }
-
-    /* Accordion styling */
-    .accordion-btn {
-      background-color: #f4f4f4;
-      color: #333;
-      cursor: pointer;
-      padding: 12px 20px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      font-weight: bold;
-      transition: 0.3s;
-      margin-top: 10px;
-      border-radius: 8px;
-    }
-
-    .accordion-btn:hover {
-      background-color: #ddd;
-    }
-
-    .accordion-panel {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      background-color: #fafafa;
-      border-left: 3px solid #2196f3;
-      margin-bottom: 10px;
-    }
-
-    .accordion-panel ul {
-      padding: 15px 0;
+    nav ul {
       list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
     }
-
-    .accordion-panel li {
-      margin-bottom: 8px;
-      font-size: 16px;
+    nav a {
+      color: #00e0a8;
+      text-decoration: none;
+      font-weight: bold;
     }
-
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .paket {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 2rem 0 1rem;
+      padding: 1rem;
+      background: #fefefe;
+    }
+    .paket h3 {
+      margin-top: 0;
+    }
+    .addon {
+      background: #f3f3f3;
+      padding: 0.8rem 1rem;
+      border-left: 4px solid #00b88d;
+      margin-top: 1rem;
+      border-radius: 4px;
+    }
+    form input, form textarea {
+      display: block;
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    form button {
+      background: #00b88d;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
     footer {
       text-align: center;
-      padding: 20px;
-      color: #888;
-    }
-
-    @media(max-width: 600px) {
-      .section {
-        margin: 15px;
-      }
+      font-size: 0.9rem;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Jasa Website by Ade</h1>
-    <p>Bikin web profesional mulai Rp600.000 untuk bisnis, portofolio, dan jualan online</p>
+    <p>Bikin web profesional cepat dan rapi mulai Rp600.000</p>
+    <nav>
+      <ul>
+        <li><a href="#paket">Paket</a></li>
+        <li><a href="#template">Template</a></li>
+        <li><a href="#order">Order</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section class="section" id="paket">
-    <h2>💼 Paket Jasa</h2>
+  <section id="paket">
+    <h2>Paket Website</h2>
 
-    <div class="package">
+    <div class="paket">
       <h3>🟢 Starter – Rp600.000</h3>
       <ul>
         <li>1 halaman (landing page atau profil)</li>
-        <li>HTML, CSS, JS (static)</li>
-        <li>Hosting GitHub Pages / Netlify</li>
-        <li>Custom nama domain – gratis setup</li>
+        <li>HTML, CSS, JS statis</li>
+        <li>Hosting di GitHub Pages</li>
+        <li>Custom domain (setup gratis)</li>
       </ul>
+      <div class="addon">
+        <strong>Add-on:</strong><br>
+        ➕ Tambah halaman: +Rp300.000<br>
+        🛠 Maintenance bulanan: +Rp50.000<br>
+        📝 Copywriting: +Rp300.000
+      </div>
     </div>
 
-    <div class="package">
+    <div class="paket">
       <h3>🟡 Pro – Rp1.200.000</h3>
       <ul>
-        <li>Max 3 halaman</li>
-        <li>Animasi ringan (slider, tab, navbar interaktif)</li>
+        <li>Maks 3 halaman</li>
+        <li>Animasi ringan (slider, tab, navbar)</li>
         <li>Formulir kontak ke email</li>
         <li>Integrasi WhatsApp & Google Maps</li>
       </ul>
+      <div class="addon">
+        <strong>Add-on:</strong><br>
+        ➕ Tambah halaman: +Rp300.000<br>
+        🔍 SEO Basic: +Rp200.000<br>
+        🛠 Maintenance bulanan: +Rp50.000
+      </div>
     </div>
 
-    <div class="package">
-      <h3>🔴 Custom – > Rp2.000.000</h3>
+    <div class="paket">
+      <h3>🔴 Custom – >Rp2.000.000</h3>
       <ul>
         <li>Peta interaktif (Mapbox)</li>
-        <li>Filter katalog / API integrasi</li>
+        <li>Katalog, filter, API integration</li>
         <li>Halaman banyak</li>
-        <li>CMS opsional (WordPress, Notion API, Supabase)</li>
+        <li>CMS (WordPress / Notion / Supabase)</li>
       </ul>
+      <div class="addon">
+        <strong>Add-on:</strong><br>
+        🌐 Domain & email bisnis: +Rp250.000<br>
+        🧰 Maintenance bulanan: +Rp50.000<br>
+        📃 Copywriting & struktur halaman: +Rp300.000
+      </div>
     </div>
   </section>
 
-  <section class="section" id="add-ons">
-    <h2>🔧 Tambahan Layanan (Optional)</h2>
-    <div class="accordion">
-      <button class="accordion-btn">+ Tambah Halaman & Fitur</button>
-      <div class="accordion-panel">
-        <ul>
-          <li>📝 Tambah halaman baru – <strong>Rp300.000</strong></li>
-          <li>📨 Formulir tambahan – <strong>Rp150.000</strong></li>
-          <li>📍 WhatsApp / Maps button – <strong>Rp100.000</strong></li>
-          <li>🎞️ Slider gambar – <strong>Rp200.000</strong></li>
-          <li>🎨 Animasi & interaktif – <strong>Rp250.000</strong></li>
-          <li>🔍 SEO basic + metadata – <strong>Rp200.000</strong></li>
-          <li>🖋️ Copywriting 1 halaman – <strong>Rp300.000</strong></li>
-          <li>📧 Setup domain & email bisnis – <strong>Rp250.000</strong></li>
-        </ul>
-      </div>
+  <section id="template">
+    <h2>Template Siap Pakai</h2>
+    <p>Berikut beberapa contoh yang bisa kamu pilih dan modifikasi:</p>
+    <ul>
+      <li><a href="#">Landing Page Produk</a></li>
+      <li><a href="#">Company Profile</a></li>
+      <li><a href="#">Portfolio Personal</a></li>
+      <li><a href="#">Katalog Online</a></li>
+    </ul>
+  </section>
 
-      <button class="accordion-btn">+ Maintenance Bulanan</button>
-      <div class="accordion-panel">
-        <ul>
-          <li>🧰 Basic – <strong>Rp50.000/bulan</strong> (update ringan 2x/bulan)</li>
-          <li>🛡️ Premium – <strong>Rp150.000/bulan</strong> (unlimited update kecil)</li>
-          <li>🚀 Super + SEO – <strong>Rp300.000/bulan</strong> (full support & laporan)</li>
-        </ul>
-      </div>
-    </div>
+  <section id="order">
+    <h2>Order Sekarang</h2>
+    <p>Hubungi via WhatsApp: <a href="https://wa.me/628123456789" target="_blank">+62 812-3456-789</a></p>
+    <form action="https://formspree.io/f/xayzbqgv" method="POST">
+      <input type="text" name="nama" placeholder="Nama Anda" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <textarea name="pesan" placeholder="Ceritakan kebutuhan website Anda" required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
   </section>
 
   <footer>
-    © 2025 Jasa Website by Ade – Semua hak dilindungi
+    <p>&copy; 2025 Jasa Website by Ade. All rights reserved.</p>
   </footer>
 
   <script>
-    // Smooth scroll if needed
-    document.querySelectorAll("a[href^='#']").forEach(anchor => {
-      anchor.addEventListener("click", function(e) {
+    // Smooth scroll ke anchor
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth"
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
         });
-      });
-    });
-
-    // Accordion toggle
-    document.querySelectorAll(".accordion-btn").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active");
-        const panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
       });
     });
   </script>
