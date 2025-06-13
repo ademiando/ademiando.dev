@@ -1,160 +1,350 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jasa Website by Ade</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: #007bff;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 { margin: 0; font-size: 28px; }
-    nav ul { display: flex; justify-content: center; gap: 1.5rem; list-style: none; padding: 0; }
-    nav a { color: #fff; text-decoration: none; font-weight: bold; }
-    .section {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    h2 { margin-top: 0; color: #007bff; }
-    .package {
-      border: 2px solid #007bff;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 15px 0;
-    }
-    .package h3 { margin: 0 0 10px 0; color: #007bff; }
-    .package ul { padding-left: 20px; }
-    .addon { background: #f4f4f4; padding: 15px; border-radius: 6px; margin-top: 10px; }
-    .cta-wa { display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #25d366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-    .accordion-btn { background-color: #f4f4f4; color: #333; cursor: pointer; padding: 12px 20px; width: 100%; border: none; text-align: left; font-weight: bold; transition: 0.3s; margin-top: 10px; border-radius: 8px; }
-    .accordion-btn:hover { background-color: #ddd; }
-    .accordion-panel { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #fafafa; border-left: 3px solid #2196f3; margin-bottom: 10px; }
-    .accordion-panel ul { padding: 15px 0; list-style: none; }
-    .accordion-panel li { margin-bottom: 8px; font-size: 16px; }
-    ul.portfolio-list { list-style: none; padding: 0; }
-    ul.portfolio-list li { margin-bottom: 8px; }
-    ul.portfolio-list a { color: #007bff; text-decoration: none; }
-    form input, form textarea { display: block; width: 100%; padding: 0.5rem; margin: 0.5rem 0; border: 1px solid #ccc; border-radius: 6px; }
-    form button { background: #007bff; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; }
-    footer { text-align: center; padding: 20px; color: #888; font-size: 0.9rem; margin-top: 40px; }
-    @media(max-width: 600px) { .section { margin: 15px; } nav ul { flex-direction: column; gap: 0.5rem; } }
-  </style>
+  <title>Jasa Website Premium by Ade</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>Jasa Website by Ade</h1>
-    <p>Butuh website profesional yang bikin bisnis kamu naik level? Saya bantu dari nol sampai online. Mulai dari Rp600.000 kamu udah punya web elegan, cepat, dan fungsional – lengkap domain & hosting!</p>
-    <nav>
-      <ul>
+  <div class="particles-container" id="particles-js"></div>
+  
+  <!-- Floating Navigation -->
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-icon"><i class="fas fa-code"></i></span>
+        <span>Ade Web</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
         <li><a href="#portfolio">Karya</a></li>
         <li><a href="#paket">Paket</a></li>
         <li><a href="#add-ons">Add-on</a></li>
         <li><a href="#order">Order</a></li>
       </ul>
-    </nav>
-  </header>  <section class="section" id="portfolio">
-    <h2>🌐 Contoh Website</h2>
-    <p>Beberapa website yang pernah saya buat, klik untuk lihat langsung:</p>
-    <ul class="portfolio-list">
-      <li><a href="https://ademiando.github.io/portfolio1" target="_blank">Company Profile – CV Jaya Abadi</a></li>
-      <li><a href="https://ademiando.github.io/portfolio2" target="_blank">Landing Page – Produk Kopi Lokal</a></li>
-      <li><a href="https://ademiando.github.io/portfolio3" target="_blank">Katalog Online – Toko Tanaman Hias</a></li>
-      <li><a href="https://ademiando.github.io/portfolio4" target="_blank">Portofolio Pribadi – UI/UX Designer</a></li>
-    </ul>
-  </section>  <section class="section" id="paket">
-    <h2>💼 Paket Jasa</h2>
-    <div class="package">
-      <h3>🟢 Starter – Rp600.000</h3>
-      <ul>
-        <li>1 halaman (landing page atau profil)</li>
-        <li>HTML, CSS, JS (static)</li>
-        <li>Hosting GitHub Pages / Netlify</li>
-        <li>Custom domain – gratis setup</li>
-      </ul>
-      <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp</a>
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
     </div>
-    <div class="package">
-      <h3>🟡 Pro – Rp1.200.000</h3>
-      <ul>
-        <li>Max 3 halaman</li>
-        <li>Animasi ringan (slider, tab, navbar)</li>
-        <li>Formulir kontak ke email</li>
-        <li>Integrasi WhatsApp & Google Maps</li>
-      </ul>
-      <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Jasa Website <span class="highlight">Premium</span> by Ade</h1>
+      <p class="hero-subtitle">Transformasi digital untuk bisnis Anda dengan website profesional yang memukau</p>
+      <div class="hero-cta">
+        <a href="#paket" class="cta-btn">Lihat Paket <i class="fas fa-arrow-down"></i></a>
+        <a href="https://wa.me/6285726951002" target="_blank" class="cta-btn wa-btn">Order via WhatsApp <i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
-    <div class="package">
-      <h3>🔴 Custom – > Rp2.000.000</h3>
-      <ul>
-        <li>Peta interaktif (Mapbox)</li>
-        <li>Filter katalog / API integrasi</li>
-        <li>Halaman banyak</li>
-        <li>CMS (WordPress / Notion API / Supabase)</li>
-      </ul>
-      <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp</a>
+    <div class="hero-animation">
+      <div class="floating-cube">
+        <div class="cube">
+          <div class="face front"><i class="fas fa-globe"></i></div>
+          <div class="face back"><i class="fas fa-code"></i></div>
+          <div class="face top"><i class="fas fa-mobile-alt"></i></div>
+          <div class="face bottom"><i class="fas fa-server"></i></div>
+          <div class="face left"><i class="fas fa-paint-brush"></i></div>
+          <div class="face right"><i class="fas fa-rocket"></i></div>
+        </div>
+      </div>
     </div>
-  </section>  <section class="section" id="add-ons">
-    <h2>🔧 Tambahan Layanan (Optional)</h2>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section portfolio-section">
+    <div class="section-header">
+      <h2><i class="fas fa-globe-asia"></i> Contoh Website</h2>
+      <p>Portofolio website profesional yang pernah saya buat</p>
+    </div>
+    
+    <div class="portfolio-grid">
+      <div class="portfolio-card glass-card">
+        <div class="card-header">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Company Profile">
+        </div>
+        <div class="card-body">
+          <h3>Company Profile – CV Jaya Abadi</h3>
+          <p>Website profesional untuk perusahaan dengan fitur lengkap</p>
+        </div>
+        <div class="card-footer">
+          <a href="https://ademiando.github.io/portfolio1" target="_blank" class="portfolio-link">Lihat Website <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      
+      <div class="portfolio-card glass-card">
+        <div class="card-header">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Landing Page">
+        </div>
+        <div class="card-body">
+          <h3>Landing Page – Produk Kopi Lokal</h3>
+          <p>Halaman penjualan yang mengoptimalkan konversi pembeli</p>
+        </div>
+        <div class="card-footer">
+          <a href="https://ademiando.github.io/portfolio2" target="_blank" class="portfolio-link">Lihat Website <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      
+      <div class="portfolio-card glass-card">
+        <div class="card-header">
+          <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Katalog Online">
+        </div>
+        <div class="card-body">
+          <h3>Katalog Online – Toko Tanaman Hias</h3>
+          <p>Katalog produk dengan filter dan galeri interaktif</p>
+        </div>
+        <div class="card-footer">
+          <a href="https://ademiando.github.io/portfolio3" target="_blank" class="portfolio-link">Lihat Website <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+      
+      <div class="portfolio-card glass-card">
+        <div class="card-header">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Portfolio Pribadi">
+        </div>
+        <div class="card-body">
+          <h3>Portofolio Pribadi – UI/UX Designer</h3>
+          <p>Website portfolio modern untuk kreator digital</p>
+        </div>
+        <div class="card-footer">
+          <a href="https://ademiando.github.io/portfolio4" target="_blank" class="portfolio-link">Lihat Website <i class="fas fa-external-link-alt"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paket Section -->
+  <section id="paket" class="section paket-section">
+    <div class="section-header">
+      <h2><i class="fas fa-box-open"></i> Paket Jasa</h2>
+      <p>Pilih paket yang sesuai dengan kebutuhan bisnis Anda</p>
+    </div>
+    
+    <div class="paket-container">
+      <div class="paket-card glass-card floating">
+        <div class="card-header">
+          <div class="paket-badge starter">STARTER</div>
+          <div class="paket-price">Rp600.000</div>
+        </div>
+        <div class="card-body">
+          <ul class="paket-features">
+            <li><i class="fas fa-check-circle"></i> 1 halaman (landing page/profil)</li>
+            <li><i class="fas fa-check-circle"></i> HTML, CSS, JS (static)</li>
+            <li><i class="fas fa-check-circle"></i> Hosting GitHub Pages/Netlify</li>
+            <li><i class="fas fa-check-circle"></i> Custom domain - gratis setup</li>
+            <li><i class="fas fa-check-circle"></i> Desain responsif</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp <i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="paket-card glass-card floating">
+        <div class="card-header">
+          <div class="paket-badge pro">PRO</div>
+          <div class="paket-price">Rp1.200.000</div>
+        </div>
+        <div class="card-body">
+          <ul class="paket-features">
+            <li><i class="fas fa-check-circle"></i> Max 3 halaman</li>
+            <li><i class="fas fa-check-circle"></i> Animasi ringan (slider, tab)</li>
+            <li><i class="fas fa-check-circle"></i> Formulir kontak ke email</li>
+            <li><i class="fas fa-check-circle"></i> Integrasi WhatsApp & Google Maps</li>
+            <li><i class="fas fa-check-circle"></i> Desain premium</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp <i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      
+      <div class="paket-card glass-card floating">
+        <div class="card-header">
+          <div class="paket-badge custom">CUSTOM</div>
+          <div class="paket-price">> Rp2.000.000</div>
+        </div>
+        <div class="card-body">
+          <ul class="paket-features">
+            <li><i class="fas fa-check-circle"></i> Peta interaktif (Mapbox)</li>
+            <li><i class="fas fa-check-circle"></i> Filter katalog / API integrasi</li>
+            <li><i class="fas fa-check-circle"></i> Halaman banyak</li>
+            <li><i class="fas fa-check-circle"></i> CMS (WordPress / Notion API)</li>
+            <li><i class="fas fa-check-circle"></i> Solusi e-commerce</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a class="cta-wa" href="https://wa.me/6285726951002" target="_blank">Order via WhatsApp <i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add-ons Section -->
+  <section id="add-ons" class="section addons-section">
+    <div class="section-header">
+      <h2><i class="fas fa-tools"></i> Tambahan Layanan</h2>
+      <p>Lengkapi website Anda dengan fitur tambahan</p>
+    </div>
+    
     <div class="accordion">
-      <button class="accordion-btn">+ Tambah Halaman & Fitur</button>
-      <div class="accordion-panel">
+      <div class="accordion-item glass-card">
+        <button class="accordion-btn">
+          <i class="fas fa-plus-circle"></i> Tambah Halaman & Fitur
+          <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-panel">
+          <ul class="addon-list">
+            <li><i class="fas fa-file-alt"></i> Tambah halaman baru – <strong>Rp300.000</strong></li>
+            <li><i class="fas fa-envelope"></i> Formulir tambahan – <strong>Rp150.000</strong></li>
+            <li><i class="fab fa-whatsapp"></i> WhatsApp / Maps button – <strong>Rp100.000</strong></li>
+            <li><i class="fas fa-images"></i> Slider gambar – <strong>Rp200.000</strong></li>
+            <li><i class="fas fa-magic"></i> Animasi & interaktif – <strong>Rp250.000</strong></li>
+            <li><i class="fas fa-search"></i> SEO basic + metadata – <strong>Rp200.000</strong></li>
+            <li><i class="fas fa-pen"></i> Copywriting 1 halaman – <strong>Rp300.000</strong></li>
+            <li><i class="fas fa-envelope-open-text"></i> Setup domain & email bisnis – <strong>Rp250.000</strong></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="accordion-item glass-card">
+        <button class="accordion-btn">
+          <i class="fas fa-wrench"></i> Maintenance Bulanan
+          <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
+        </button>
+        <div class="accordion-panel">
+          <ul class="addon-list">
+            <li><i class="fas fa-tools"></i> Basic – <strong>Rp50.000/bulan</strong> (update ringan 2x/bulan)</li>
+            <li><i class="fas fa-shield-alt"></i> Premium – <strong>Rp150.000/bulan</strong> (unlimited update kecil)</li>
+            <li><i class="fas fa-rocket"></i> Super + SEO – <strong>Rp300.000/bulan</strong> (full support & laporan)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Section -->
+  <section id="order" class="section order-section">
+    <div class="section-header">
+      <h2><i class="fas fa-shopping-cart"></i> Order Sekarang</h2>
+      <p>Mulai transformasi digital bisnis Anda hari ini</p>
+    </div>
+    
+    <div class="order-container">
+      <div class="order-form glass-card">
+        <form action="https://formspree.io/f/xayzbqgv" method="POST">
+          <div class="form-group">
+            <label for="nama"><i class="fas fa-user"></i> Nama Anda</label>
+            <input type="text" id="nama" name="nama" placeholder="Nama lengkap" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" name="email" placeholder="Email aktif" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pesan"><i class="fas fa-comment"></i> Kebutuhan Website</label>
+            <textarea id="pesan" name="pesan" placeholder="Ceritakan kebutuhan website Anda" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Kirim Pesan
+          </button>
+        </form>
+      </div>
+      
+      <div class="order-info glass-card">
+        <div class="info-header">
+          <h3><i class="fab fa-whatsapp"></i> WhatsApp Order</h3>
+          <p>Chat langsung untuk konsultasi dan order</p>
+        </div>
+        <div class="info-content">
+          <a href="https://wa.me/6285726951002" class="whatsapp-link">
+            <i class="fab fa-whatsapp"></i> 0857-2695-1002
+          </a>
+          <p>Respon cepat dalam 15 menit (Senin-Sabtu, 09:00-17:00)</p>
+        </div>
+        
+        <div class="info-header">
+          <h3><i class="fas fa-info-circle"></i> Proses Order</h3>
+          <p>Alur kerja pembuatan website</p>
+        </div>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-icon">1</div>
+            <p>Konsultasi kebutuhan</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">2</div>
+            <p>Pembayaran DP 50%</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">3</div>
+            <p>Proses development</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">4</div>
+            <p>Revisi & finalisasi</p>
+          </div>
+          <div class="step">
+            <div class="step-icon">5</div>
+            <p>Pelunasan & delivery</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="glass-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon"><i class="fas fa-code"></i></span>
+          <span>Ade Web</span>
+        </div>
+        <p>Solusi website profesional untuk transformasi digital bisnis Anda</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Tautan</h4>
         <ul>
-          <li>📝 Tambah halaman baru – <strong>Rp300.000</strong></li>
-          <li>📨 Formulir tambahan – <strong>Rp150.000</strong></li>
-          <li>📍 WhatsApp / Maps button – <strong>Rp100.000</strong></li>
-          <li>🎞️ Slider gambar – <strong>Rp200.000</strong></li>
-          <li>🎨 Animasi & interaktif – <strong>Rp250.000</strong></li>
-          <li>🔍 SEO basic + metadata – <strong>Rp200.000</strong></li>
-          <li>🖋️ Copywriting 1 halaman – <strong>Rp300.000</strong></li>
-          <li>📧 Setup domain & email bisnis – <strong>Rp250.000</strong></li>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#paket">Paket</a></li>
+          <li><a href="#add-ons">Add-on</a></li>
+          <li><a href="#order">Order</a></li>
         </ul>
       </div>
-      <button class="accordion-btn">+ Maintenance Bulanan</button>
-      <div class="accordion-panel">
+      
+      <div class="footer-contact">
+        <h4>Kontak</h4>
         <ul>
-          <li>🧰 Basic – <strong>Rp50.000/bulan</strong> (update ringan 2x/bulan)</li>
-          <li>🛡️ Premium – <strong>Rp150.000/bulan</strong> (unlimited update kecil)</li>
-          <li>🚀 Super + SEO – <strong>Rp300.000/bulan</strong> (full support & laporan)</li>
+          <li><i class="fab fa-whatsapp"></i> 0857-2695-1002</li>
+          <li><i class="fas fa-envelope"></i> ade@jaswebsite.com</li>
+          <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
         </ul>
       </div>
     </div>
-  </section>  <section class="section" id="order">
-    <h2>📝 Order Sekarang</h2>
-    <form action="https://formspree.io/f/xayzbqgv" method="POST">
-      <input type="text" name="nama" placeholder="Nama Anda" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <textarea name="pesan" placeholder="Ceritakan kebutuhan website Anda" required></textarea>
-      <button type="submit">Kirim</button>
-    </form>
-    <p>Atau chat langsung ke WhatsApp: <a href="https://wa.me/6285726951002">0857-2695-1002</a></p>
-  </section>  <footer>
-    © 2025 Jasa Website by Ade – All rights reserved.
-  </footer>  <script>
-    document.querySelectorAll("a[href^='#']").forEach(anchor => {
-      anchor.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
-      });
-    });
-    document.querySelectorAll(".accordion-btn").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        this.classList.toggle("active"); const panel = this.nextElementSibling;
-        if (panel.style.maxHeight) panel.style.maxHeight = null; else panel.style.maxHeight = panel.scrollHeight + "px";
-      });
-    });
-  </script></body>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Jasa Website Premium by Ade. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
