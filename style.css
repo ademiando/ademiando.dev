@@ -70,11 +70,16 @@ body {
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: #333;
 }
+
+
+
+
+
+
+
+
 
 .nav-container {
   max-width: 1200px;
