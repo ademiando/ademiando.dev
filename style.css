@@ -4,15 +4,14 @@
 
 /* Variables */
 :root {
-  --primary-color: #0a0a0a;
-  --secondary-color: #121212;
-  --accent-color: #FFD700;
-  --accent-dark: #D4AF37;
-  --text-color: #ffffff;
-  --text-secondary: #b0b0b0;
-  --glass-bg: rgba(25, 25, 25, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --transition: all 0.4s ease;
+  --primary-color: #1A120B; /* Dark brown */
+  --secondary-color: #3C2A21; /* Medium brown */
+  --accent-color: #D5CEA3; /* Soft olive */
+  --accent-dark: #B5B391; /* Dark olive */
+  --text-color: #F5F5DC; /* Beige text */
+  --text-secondary: #D5CEA3; /* Olive secondary */
+  --glass-bg: rgba(60, 42, 33, 0.7); /* Brown glass */
+  --glass-border: rgba(213, 206, 163, 0.2); /* Olive border */
 }
 
 /* Reset & Base Styles */
