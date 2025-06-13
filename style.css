@@ -4,25 +4,25 @@
 
 /* Variables */
 :root {
-  /* Base Colors */
-  --primary-color: #F8F8F5; /* Soft white */
-  --secondary-color: #EDEDE8; /* Warm light gray */
+  /* Base Colors - Inverted */
+  --primary-color: #2A2A26; /* Soft black (background) */
+  --secondary-color: #3A3A36; /* Dark gray */
   
   /* Olive Palette */
   --olive-light: #95AE98; /* Primary olive */
-  --olive-dark: #7A8D7C; /* Darker olive */
-  --olive-accent: #A8BBA5; /* Muted sage */
+  --olive-dark: #B8C9B5; /* Lightened olive for visibility */
+  --olive-accent: #7A8D7C; /* Original dark olive as accent */
   
-  /* Neutrals */
-  --text-color: #3A3A36; /* Soft black */
-  --text-secondary: #6B6B64; /* Grayish olive */
+  /* Text Colors - Inverted */
+  --text-color: #F0F0EC; /* Soft white text */
+  --text-secondary: #C8C8C2; /* Muted light gray */
   
   /* Glass Effects */
-  --glass-bg: rgba(237, 237, 232, 0.92); /* Frosted glass */
-  --glass-border: rgba(149, 174, 152, 0.25); /* Olive border */
+  --glass-bg: rgba(42, 42, 38, 0.92); /* Dark frosted glass */
+  --glass-border: rgba(149, 174, 152, 0.3); /* Olive border */
   
   /* Highlights */
-  --highlight: #D1D9C6; /* Soft olive highlight */
+  --highlight: #6B7D6E; /* Dark olive highlight */
 }
 
 
