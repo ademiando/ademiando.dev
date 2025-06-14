@@ -934,3 +934,136 @@ body {
     display: none;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Tambahkan media query baru untuk layar kecil (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Hero Section */
+  .hero-section {
+    padding: 100px 20px 30px !important;
+  }
+  
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.3;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Floating cube animation */
+  .floating-cube {
+    width: 200px;
+    height: 200px;
+    margin-top: 30px;
+  }
+  
+  .face {
+    width: 200px;
+    height: 200px;
+    font-size: 2.5rem;
+  }
+  
+  .face.front  { transform: translateZ(100px); }
+  .face.back   { transform: rotateY(180deg) translateZ(100px); }
+  .face.top    { transform: rotateX(90deg) translateZ(100px); }
+  .face.bottom { transform: rotateX(-90deg) translateZ(100px); }
+  .face.left   { transform: rotateY(-90deg) translateZ(100px); }
+  .face.right  { transform: rotateY(90deg) translateZ(100px); }
+  
+  /* Navigation */
+  .nav-container {
+    padding: 12px 15px;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  /* Sections */
+  .section {
+    padding: 60px 15px;
+  }
+  
+  .section-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  /* Portfolio Grid */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Paket Section */
+  .paket-container {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Order Section */
+  .order-form,
+  .order-info {
+    padding: 20px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+  }
+  
+  /* Process Steps */
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+  }
+  
+  .step:nth-child(2n) .step-icon::after {
+    display: none;
+  }
+  
+  /* Footer */
+  .footer-container {
+    gap: 30px;
+  }
+  
+  .footer-links,
+  .footer-contact {
+    margin-top: 20px;
+  }
+}
+
+/* Perbaikan tambahan untuk breakpoint yang sudah ada */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 120px 30px 40px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 100px 20px 30px;
+  }
+}
