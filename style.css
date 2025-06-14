@@ -945,7 +945,7 @@ body {
 
 
 
-/* Media Query untuk HP seperti Samsung A04 (~360px) */
+/* Tambahkan media query baru untuk layar kecil (max-width: 480px) */
 @media (max-width: 480px) {
   /* Hero Section */
   .hero-section {
@@ -1009,135 +1009,72 @@ body {
     font-size: 1.8rem;
   }
   
-  /* Portfolio Grid - 2 cards per row */
+  /* Portfolio Grid */
   .portfolio-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  .portfolio-card {
-    margin-bottom: 10px;
-  }
-  
-  .card-header {
-    height: 150px;
-  }
-  
-  .card-body h3 {
-    font-size: 1.1rem;
-  }
-  
-  /* Paket Section - 2 cards per row */
-  .paket-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  
-  .paket-card {
-    padding: 20px 15px;
-  }
-  
-  .paket-price {
-    font-size: 1.3rem;
-  }
-  
-  /* Add-ons Section - Improved layout */
-  .accordion-btn {
-    padding: 15px;
-    font-size: 1rem;
-  }
-  
-  .addon-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .addon-list li:last-child {
-    border-bottom: none;
-  }
-  
-  .addon-list li div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .addon-price {
-    font-weight: 600;
-    color: var(--accent-color);
-  }
-  
-  /* Footer - Links in single row */
-  .footer-container {
     grid-template-columns: 1fr;
+  }
+  
+  /* Paket Section */
+  .paket-container {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Order Section */
+  .order-form,
+  .order-info {
+    padding: 20px;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+  }
+  
+  /* Process Steps */
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 30px;
+  }
+  
+  .step:nth-child(2n) .step-icon::after {
+    display: none;
+  }
+  
+  /* Footer */
+  .footer-container {
     gap: 30px;
   }
   
-  .footer-links-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
+  .footer-links,
   .footer-contact {
-    grid-column: span 2;
-  }
-  
-  .footer-links ul,
-  .footer-contact ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .footer-links li,
-  .footer-contact li {
-    margin: 0;
-  }
-  
-  .footer-links a {
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 30px;
-    gap: 5px;
-    white-space: nowrap;
-  }
-  
-  .footer-contact li {
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 30px;
-    gap: 8px;
-    white-space: nowrap;
+    margin-top: 20px;
   }
 }
 
-/* Additional tweaks for very small screens */
-@media (max-width: 360px) {
-  .portfolio-grid,
-  .paket-container {
-    grid-template-columns: 1fr;
+/* Perbaikan tambahan untuk breakpoint yang sudah ada */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 120px 30px 40px;
   }
   
-  .footer-links-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-contact {
-    grid-column: span 1;
-  }
-  
-  .footer-links ul,
-  .footer-contact ul {
-    gap: 8px;
-  }
-  
-  .footer-links a,
-  .footer-contact li {
-    padding: 6px 10px;
-    font-size: 0.85rem;
+  .hero-title {
+    font-size: 2.5rem;
   }
 }
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 100px 20px 30px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
