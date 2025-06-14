@@ -325,45 +325,113 @@
 
 
 
-<section class="w-full bg-transparent py-12">
-  <div class="relative max-w-5xl mx-auto">
-    <!-- Carousel Wrapper -->
-    <div class="overflow-hidden rounded-2xl backdrop-blur-lg bg-white/10 border border-white/20 p-4">
-      <div id="logo-carousel" class="flex no-wrap space-x-8 animate-scroll-left">
-        <!-- Carousel Items -->
-        <img src="https://cdn.simpleicons.org/html5/ffffff" alt="HTML5" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/css3/ffffff" alt="CSS3" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/javascript/ffffff" alt="JavaScript" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/tailwindcss/ffffff" alt="Tailwind CSS" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/supabase/ffffff" alt="Supabase" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/mapbox/ffffff" alt="Mapbox" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/googlemaps/ffffff" alt="Google Maps" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/openstreetmap/ffffff" alt="OpenStreetMap" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/openweathermap/ffffff" alt="OpenWeatherMap" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/stripe/ffffff" alt="Stripe" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/xendit/ffffff" alt="Xendit" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/metamask/ffffff" alt="MetaMask" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/vercel/ffffff" alt="Vercel" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/netlify/ffffff" alt="Netlify" class="h-12 flex-shrink-0" />
-        <img src="https://cdn.simpleicons.org/wordpress/ffffff" alt="WordPress" class="h-12 flex-shrink-0" />
-      </div>
+<section class="powered-by">
+  <h2 class="powered-title">Powered by</h2>
+  <div class="powered-logos">
+    <div class="tech-logo">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+      <span>GitHub</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Mapbox_logo_2019.svg" alt="Mapbox">
+      <span>Mapbox</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://cdn.worldvectorlogo.com/logos/google-maps-2020-icon.svg" alt="Google Maps">
+      <span>Google Maps</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://cryptologos.cc/logos/metamask-fox-logo.svg" alt="MetaMask">
+      <span>MetaMask</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/OpenWeatherMap_logo.png" alt="OpenWeather">
+      <span>OpenWeather</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Firebase_Logo.svg" alt="Firebase">
+      <span>Firebase</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" alt="Supabase">
+      <span>Supabase</span>
+    </div>
+    <div class="tech-logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Stripe_Logo%2C_revised_2016.svg" alt="Stripe">
+      <span>Stripe</span>
     </div>
   </div>
 </section><style>
-  /* Hide scrollbar */
-  #logo-carousel::-webkit-scrollbar { display: none; }
-  #logo-carousel { -ms-overflow-style: none; scrollbar-width: none; }
+.powered-by {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 1rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 10px rgba(255,255,255,0.05);
+  margin: 4rem auto;
+  max-width: 900px;
+}
 
-  /* Infinite scroll animation */
-  @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .animate-scroll-left {
-    animation: scroll-left 20s linear infinite;
-  }
+.powered-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.powered-logos {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+  justify-content: flex-start;
+  scroll-behavior: smooth;
+}
+
+.tech-logo {
+  min-width: 120px;
+  text-align: center;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.tech-logo:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.12);
+}
+
+.tech-logo img {
+  height: 32px;
+  margin-bottom: 0.5rem;
+  filter: brightness(0) invert(1);
+}
+
+.tech-logo span {
+  color: #eee;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.powered-logos::-webkit-scrollbar {
+  display: none;
+}
+
+.powered-logos {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>
+
+
 
 
 
