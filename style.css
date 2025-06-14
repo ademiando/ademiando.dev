@@ -24,7 +24,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle at center, #fff, #95ae98);
+  background: radial-gradient(circle at center, #0f0f0f, #000000);
+
   color: var(--text-color);
   line-height: 1.6;
   overflow-x: hidden;
