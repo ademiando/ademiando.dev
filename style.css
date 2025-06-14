@@ -195,6 +195,36 @@ body {
   margin-bottom: 30px;
 }
 
+/* Style untuk foundation teknis */
+.tech-foundation {
+  margin: 20px 0 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--accent-color);
+}
+
+/* Style untuk list kebebasan */
+.freedom-list {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+}
+
+.freedom-list li {
+  margin-bottom: 10px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.freedom-list li i {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  color: var(--accent-color);
+  width: 24px;
+  text-align: center;
+}
+
 .hero-cta {
   display: flex;
   gap: 20px;
