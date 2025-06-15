@@ -448,7 +448,7 @@
   padding: 0.8rem 0;
   justify-content: flex-start;
   width: max-content;
-  animation: scroll 120s linear infinite; /* Durasi lebih lama */
+  animation: scroll 120s linear infinite;
 }
 
 .tech-logo {
@@ -468,13 +468,6 @@
   backdrop-filter: blur(4px);
 }
 
-/* Animasi baru */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% + 100vw)); }
-}
-
-/* CSS lainnya tetap sama */
 .tech-logo:hover {
   transform: translateY(-7px) scale(1.05);
   background: rgba(255, 255, 255, 0.15);
@@ -482,17 +475,18 @@
   border-color: rgba(143, 148, 251, 0.35);
 }
 
+/* PERUBAHAN PENTING: Tampilkan warna asli logo */
 .tech-logo img {
   height: 36px;
   margin-bottom: 0.7rem;
-  filter: brightness(0) invert(1);
   transition: all 0.3s ease;
   object-fit: contain;
+  /* Hapus filter yang membuat logo putih */
 }
 
 .tech-logo:hover img {
   transform: scale(1.15);
-  filter: brightness(1) invert(0) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .tech-logo span {
@@ -515,6 +509,11 @@
 .powered-logos {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100% + 100vw)); }
 }
 
 @keyframes rotate {
@@ -564,7 +563,7 @@
   
   .logos-track {
     gap: 0.9rem;
-    animation-duration: 180s; /* Lebih lambat di mobile */
+    animation-duration: 180s;
   }
   
   .tech-logo {
@@ -581,7 +580,6 @@
   }
 }
 </style>
-
 
 
 
