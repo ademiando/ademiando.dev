@@ -1,5 +1,92 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
+
+
+
+
+
+  // ========== KODE CUBE INTERAKTIF 3D ==========
+  const cube = document.querySelector('.cube');
+  let angleX = 0;
+  let angleY = 0;
+  let angleZ = 0;
+  let autoRotate = true;
+
+  if (cube) {
+    setInterval(() => {
+      if (autoRotate) {
+        angleX += 1;
+        angleY += 1;
+        angleZ += 1;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+      }
+    }, 20);
+
+    // Drag to rotate (mouse)
+    let dragging = false;
+    let lastX, lastY;
+
+    cube.parentElement.addEventListener('mousedown', function(e) {
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      autoRotate = false;
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (dragging) {
+        let deltaX = e.clientX - lastX;
+        let deltaY = e.clientY - lastY;
+        angleY += deltaX * 0.8;
+        angleX -= deltaY * 0.8;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      }
+    });
+
+    window.addEventListener('mouseup', function() {
+      dragging = false;
+    });
+
+    // Drag to rotate (touch / mobile)
+    cube.parentElement.addEventListener('touchstart', function(e) {
+      dragging = true;
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+      autoRotate = false;
+    });
+
+    window.addEventListener('touchmove', function(e) {
+      if (dragging) {
+        let deltaX = e.touches[0].clientX - lastX;
+        let deltaY = e.touches[0].clientY - lastY;
+        angleY += deltaX * 0.8;
+        angleX -= deltaY * 0.8;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    });
+
+    window.addEventListener('touchend', function() {
+      dragging = false;
+    });
+  }
+
+  
+
+
+
+
+
+
+
+  
   // Initialize Particles.js
   particlesJS('particles-js', {
     particles: {
