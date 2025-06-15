@@ -2,13 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 
-
-
-
-
-
-
-
   // ========== KODE CUBE INTERAKTIF 3D ==========
   const cube = document.querySelector('.cube');
   let angleX = 0;
@@ -80,13 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
 
-
-
-
-
-
-
-  
+ 
   // Initialize Particles.js
   particlesJS('particles-js', {
     particles: {
