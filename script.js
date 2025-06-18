@@ -99,27 +99,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ========== KODE PARTIKEL & FUNGSI LAINNYA ==========
-  // Initialize Particles.js
-  particlesJS('particles-js', {
-    // ... konfigurasi particles.js tetap sama ...
-  });
+  
 
-  // Smooth scrolling for anchor links
-  // ... kode smooth scrolling tetap sama ...
-
-  // Accordion functionality
-  // ... kode accordion tetap sama ...
-
-  // Mobile menu toggle
-  // ... kode mobile menu tetap sama ...
-
-  // Add animation on scroll
-  // ... kode animation on scroll tetap sama ...
-
-  // Form submission handling
-  // ... kode form submission tetap sama ...
-});
 
 
 
