@@ -289,8 +289,12 @@ body {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  /* animation: rotate 20s infinite linear; */
 }
+
+.cube {
+  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 
 .face {
   position: absolute;
@@ -313,20 +317,6 @@ body {
 .face.bottom { transform: rotateX(-90deg) translateZ(150px); }
 .face.left   { transform: rotateY(-90deg) translateZ(150px); }
 .face.right  { transform: rotateY(90deg) translateZ(150px); }
-
-
-
-
-
-
-/* @keyframes rotate {
-  0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
-  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-} */
-
-
-
-
 
 
 /* Sections */
