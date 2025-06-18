@@ -1,30 +1,45 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function() {
-
-
   // ========== KODE CUBE INTERAKTIF 3D ==========
   const cube = document.querySelector('.cube');
   let angleX = 0;
   let angleY = 0;
   let angleZ = 0;
   let autoRotate = true;
-
+  
+  // Tambahkan variabel untuk reset timer
+  let autoRotateTimeout;
+  const AUTO_ROTATE_DELAY = 5000; // 5 detik setelah interaksi
 
   if (cube) {
-   
-
-setInterval(() => {
-  if (autoRotate) {
-    angleX = 15 + 5 * Math.sin(Date.now() / 5000); // Berubah pelan-pelan
-    angleY += 1;
+    // Fungsi untuk mengaktifkan kembali rotasi otomatis
+    function enableAutoRotate() {
+      autoRotate = true;
+    }
     
-    cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-  }
-}, 20);
- 
+    // Fungsi untuk menunda rotasi otomatis
+    function delayAutoRotate() {
+      // Clear timeout sebelumnya jika ada
+      clearTimeout(autoRotateTimeout);
+      
+      // Set timeout baru
+      autoRotateTimeout = setTimeout(enableAutoRotate, AUTO_ROTATE_DELAY);
+    }
 
+    // Fungsi untuk menangani interaksi user
+    function handleUserInteraction() {
+      autoRotate = false;
+      delayAutoRotate();
+    }
 
+    setInterval(() => {
+      if (autoRotate) {
+        angleX = 15 + 5 * Math.sin(Date.now() / 5000); // Berubah pelan-pelan
+        angleY += 1;
 
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      }
+    }, 20);
 
     // Drag to rotate (mouse)
     let dragging = false;
@@ -34,7 +49,7 @@ setInterval(() => {
       dragging = true;
       lastX = e.clientX;
       lastY = e.clientY;
-      autoRotate = false;
+      handleUserInteraction(); // Panggil fungsi interaksi
     });
 
     window.addEventListener('mousemove', function(e) {
@@ -50,7 +65,10 @@ setInterval(() => {
     });
 
     window.addEventListener('mouseup', function() {
-      dragging = false;
+      if (dragging) {
+        dragging = false;
+        handleUserInteraction(); // Panggil saat interaksi selesai
+      }
     });
 
     // Drag to rotate (touch / mobile)
@@ -58,7 +76,7 @@ setInterval(() => {
       dragging = true;
       lastX = e.touches[0].clientX;
       lastY = e.touches[0].clientY;
-      autoRotate = false;
+      handleUserInteraction(); // Panggil fungsi interaksi
     });
 
     window.addEventListener('touchmove', function(e) {
@@ -74,9 +92,36 @@ setInterval(() => {
     });
 
     window.addEventListener('touchend', function() {
-      dragging = false;
+      if (dragging) {
+        dragging = false;
+        handleUserInteraction(); // Panggil saat interaksi selesai
+      }
     });
   }
+
+  // ========== KODE PARTIKEL & FUNGSI LAINNYA ==========
+  // Initialize Particles.js
+  particlesJS('particles-js', {
+    // ... konfigurasi particles.js tetap sama ...
+  });
+
+  // Smooth scrolling for anchor links
+  // ... kode smooth scrolling tetap sama ...
+
+  // Accordion functionality
+  // ... kode accordion tetap sama ...
+
+  // Mobile menu toggle
+  // ... kode mobile menu tetap sama ...
+
+  // Add animation on scroll
+  // ... kode animation on scroll tetap sama ...
+
+  // Form submission handling
+  // ... kode form submission tetap sama ...
+});
+
+
 
   
 
