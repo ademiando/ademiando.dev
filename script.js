@@ -9,15 +9,25 @@ document.addEventListener('DOMContentLoaded', function() {
   let angleZ = 0;
   let autoRotate = true;
 
+
   if (cube) {
-    setInterval(() => {
-      if (autoRotate) {
-        angleX += 1;
-        angleY += 1;
-        angleZ += 1;
-        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
-      }
-    }, 20);
+   
+
+
+
+
+setInterval(() => {
+  if (autoRotate) {
+    angleY += 1;
+    cube.style.transform = `rotateX(0deg) rotateY(${angleY}deg) rotateZ(0deg)`;
+  }
+}, 20);
+
+
+ 
+
+
+
 
     // Drag to rotate (mouse)
     let dragging = false;
