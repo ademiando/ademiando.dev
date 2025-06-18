@@ -1,6 +1,6 @@
-// script.js
 document.addEventListener('DOMContentLoaded', function() {
-  // ========== KODE CUBE INTERAKTIF 3D ==========
+
+  // ========== CUBE INTERAKTIF 3D ==========
   const cube = document.querySelector('.cube');
   let angleX = 0;
   let angleY = 0;
@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Tambahkan variabel untuk reset timer
   let autoRotateTimeout;
-  const AUTO_ROTATE_DELAY = 5000; // 5 detik setelah interaksi
+  const AUTO_ROTATE_DELAY = 3000; // 3 detik setelah interaksi
 
   if (cube) {
-    // Fungsi untuk mengaktifkan kembali rotasi otomatis
+    // Fungsi untuk aktifkan kembali rotasi otomatis
     function enableAutoRotate() {
       autoRotate = true;
     }
@@ -94,18 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('touchend', function() {
       if (dragging) {
         dragging = false;
-        handleUserInteraction(); // Panggil saat interaksi selesai
+        handleUserInteraction();
       }
     });
   }
 
   
-
-
-
-
-  
-
  
   // Initialize Particles.js
   particlesJS('particles-js', {
