@@ -14,14 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
    
 
 setInterval(() => {
-      if (autoRotate) {
-        angleX += 1;
-        angleY += 1;
-        angleZ += 1;
-        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
-      }
-    }, 20);
-
+  if (autoRotate) {
+    angleX = 15 + 5 * Math.sin(Date.now() / 5000); // Berubah pelan-pelan
+    angleY += 1;
+    
+    cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+  }
+}, 20);
  
 
 
