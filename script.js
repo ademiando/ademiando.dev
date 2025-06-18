@@ -13,16 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (cube) {
    
 
-
-
-
 setInterval(() => {
-  if (autoRotate) {
-    angleY += 1;
-    cube.style.transform = `rotateX(0deg) rotateY(${angleY}deg) rotateZ(0deg)`;
-  }
-}, 20);
-
+      if (autoRotate) {
+        angleX += 1;
+        angleY += 1;
+        angleZ += 1;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+      }
+    }, 20);
 
  
 
