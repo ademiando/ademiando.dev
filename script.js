@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
       }
-    }, 40);
+    }, 20);
 
     // Drag to rotate (mouse)
     let dragging = false;
