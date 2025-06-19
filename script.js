@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Tambahkan variabel untuk reset timer
   let autoRotateTimeout;
-  const AUTO_ROTATE_DELAY = 3000; // 3 detik setelah interaksi
+  const AUTO_ROTATE_DELAY = 2000; // 2 detik setelah interaksi
 
   if (cube) {
     // Fungsi untuk aktifkan kembali rotasi otomatis
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
       }
-    }, 20);
+    }, 40);
 
     // Drag to rotate (mouse)
     let dragging = false;
