@@ -2,64 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Montamap 3D Test</title>
+  <title>Montamap Periodic Table 3D</title>
   <style>
-    body {
+    html, body {
+      background-color: black;
       margin: 0;
       overflow: hidden;
-      background: #111;
+      font-family: sans-serif;
     }
+
     .element {
-      width: 200px;
-      height: 200px;
-      background-color: rgba(0, 255, 255, 0.7);
-      border: 4px solid white;
-      border-radius: 20px;
-      color: black;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
+      width: 120px;
+      height: 160px;
+      box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 10px;
+      background-color: rgba(0,127,127,0.75);
+      text-align: center;
+      cursor: default;
+      color: #fff;
+    }
+
+    .number {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      padding-top: 10px;
+    }
+
+    .symbol {
+      font-size: 48px;
+      line-height: 48px;
+    }
+
+    .details {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
     }
   </style>
 </head>
 <body>
 
-<!-- Three.js dan CSS3DRenderer versi stabil -->
+<!-- Three.js & CSS3DRenderer -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r148/examples/js/renderers/CSS3DRenderer.js"></script>
 
 <script>
-  const scene = new THREE.Scene();
+  let camera, scene, renderer;
+  const objects = [];
 
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 2000);
-  camera.position.z = 500;
-
-  const renderer = new THREE.CSS3DRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  const div = document.createElement('div');
-  div.className = 'element';
-  div.textContent = 'Montamap 3D!';
-
-  const object = new THREE.CSS3DObject(div);
-  object.position.set(0, 0, 0);
-  scene.add(object);
-
-  function animate() {
-    requestAnimationFrame(animate);
-    object.rotation.y += 0.01;
-    renderer.render(scene, camera);
-  }
+  init();
   animate();
 
-  window.addEventListener('resize', () => {
+  function init() {
+    camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 3000;
+
+    scene = new THREE.Scene();
+
+    // Create 20 dummy elements
+    for (let i = 0; i < 20; i++) {
+      const element = document.createElement('div');
+      element.className = 'element';
+
+      element.innerHTML = `
+        <div class="number">${i + 1}</div>
+        <div class="symbol">El</div>
+        <div class="details">Element ${i + 1}</div>
+      `;
+
+      const objectCSS = new THREE.CSS3DObject(element);
+      objectCSS.position.x = (i % 5) * 220 - 440;
+      objectCSS.position.y = -Math.floor(i / 5) * 240 + 240;
+      objectCSS.position.z = 0;
+
+      scene.add(objectCSS);
+      objects.push(objectCSS);
+    }
+
+    renderer = new THREE.CSS3DRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    window.addEventListener('resize', onWindowResize);
+  }
+
+  function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    scene.rotation.y += 0.002;
+    renderer.render(scene, camera);
+  }
 </script>
 
 </body>
