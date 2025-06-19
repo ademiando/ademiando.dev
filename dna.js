@@ -105,62 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  // MODIFIKASI CSS CUBE MENJADI HIJAU
-  const cubeStyle = document.createElement('style');
-  cubeStyle.innerHTML = `
-    .cube {
-      filter: 
-        drop-shadow(0 0 2px #39FF14)
-        drop-shadow(0 0 5px #39FF14)
-        drop-shadow(0 0 15px #39FF14);
-      animation: cube-glow-pulse 3s infinite alternate;
-    }
-    
-    @keyframes cube-glow-pulse {
-      0% { 
-        filter: 
-          drop-shadow(0 0 2px #39FF14)
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 15px #39FF14);
-      }
-      100% { 
-        filter: 
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 15px #39FF14)
-          drop-shadow(0 0 30px #39FF14);
-      }
-    }
-    
-    .cube .face {
-      background: rgba(0, 40, 0, 0.85);
-      border: 2px solid #39FF14;
-      box-shadow: 
-        inset 0 0 10px rgba(57, 255, 20, 0.5),
-        0 0 15px rgba(57, 255, 20, 0.3);
-    }
-    
-    .cube .face::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border: 1px solid #39FF14;
-      box-shadow: 
-        inset 0 0 5px #39FF14,
-        0 0 10px #39FF14;
-      animation: face-glow 2s infinite alternate;
-      border-radius: 3px;
-    }
-    
-    @keyframes face-glow {
-      0% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-  `;
-  document.head.appendChild(cubeStyle); 
-
 
 
 
