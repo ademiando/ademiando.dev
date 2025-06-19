@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
         random: true,
         anim: {
           enable: true,
-          speed: 2,
+          speed: 3,
           size_min: 0.1,
           sync: false
         }
