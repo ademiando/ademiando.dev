@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3D CSS Element - Montamap Demo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      font-family: sans-serif;
+    }
+    .element {
+      width: 120px;
+      height: 160px;
+      background: rgba(0,127,127,0.75);
+      border: 2px solid #0ff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.5);
+      text-align: center;
+      color: white;
+      line-height: 1.2;
+      cursor: pointer;
+    }
+    .element h3 {
+      margin: 20px 0 10px;
+      font-size: 32px;
+    }
+    .element p {
+      font-size: 16px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/renderers/CSS3DRenderer.js"></script>
+
+<script>
+  // SCENE & CAMERA
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
+  camera.position.z = 800;
+
+  // RENDERER
+  const renderer = new THREE.CSS3DRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+
+  // ELEMENT
+  const element = document.createElement('div');
+  element.className = 'element';
+  element.innerHTML = '<h3>H</h3><p>Hydrogen</p>';
+
+  const cssObject = new THREE.CSS3DObject(element);
+  cssObject.position.set(0, 0, 0);
+  scene.add(cssObject);
+
+  // ROTATION ANIMATION
+  function animate() {
+    requestAnimationFrame(animate);
+    cssObject.rotation.y += 0.01;
+    cssObject.rotation.x += 0.005;
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // RESPONSIVE
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
+</body>
+</html>
