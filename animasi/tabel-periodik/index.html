@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3D CSS Element - Montamap Demo</title>
+  <title>3D CSS Element Test</title>
   <style>
     body {
       margin: 0;
@@ -13,14 +13,13 @@
     .element {
       width: 120px;
       height: 160px;
-      background: rgba(0,127,127,0.75);
+      background: rgba(0, 127, 127, 0.75);
       border: 2px solid #0ff;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,255,255,0.5);
       text-align: center;
       color: white;
       line-height: 1.2;
-      cursor: pointer;
     }
     .element h3 {
       margin: 20px 0 10px;
@@ -34,36 +33,37 @@
 </head>
 <body>
 
+<!-- LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/renderers/CSS3DRenderer.js"></script>
 
 <script>
-  // SCENE & CAMERA
+  // SETUP
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 5000);
-  camera.position.z = 800;
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
+  camera.position.set(0, 0, 1000);
 
-  // RENDERER
   const renderer = new THREE.CSS3DRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // ELEMENT
-  const element = document.createElement('div');
-  element.className = 'element';
-  element.innerHTML = '<h3>H</h3><p>Hydrogen</p>';
+  // BIKIN ELEMEN HTML 3D
+  const div = document.createElement('div');
+  div.className = 'element';
+  div.innerHTML = '<h3>H</h3><p>Hydrogen</p>';
 
-  const cssObject = new THREE.CSS3DObject(element);
-  cssObject.position.set(0, 0, 0);
-  scene.add(cssObject);
+  const object = new THREE.CSS3DObject(div);
+  object.position.set(0, 0, 0);
+  scene.add(object);
 
-  // ROTATION ANIMATION
+  // RENDER LOOP
   function animate() {
     requestAnimationFrame(animate);
-    cssObject.rotation.y += 0.01;
-    cssObject.rotation.x += 0.005;
+    object.rotation.y += 0.01;
+    object.rotation.x += 0.005;
     renderer.render(scene, camera);
   }
+
   animate();
 
   // RESPONSIVE
