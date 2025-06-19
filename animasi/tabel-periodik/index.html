@@ -13,16 +13,18 @@
       background: #111;
     }
     #periodic-deco {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 900px;
-      height: 600px;
-      transform: translate(-50%, -50%);
-      border: none;
-      pointer-events: none;       /* biar iframe cuma hiasan, gak ganggu klik */
-      opacity: 0.8;               /* tone-down supaya background tetap fokus konten utama */
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  border: none;
+  opacity: 0.9; /* biar tetap transparan dikit */
+  z-index: 10;
+}
+
+
   </style>
 </head>
 <body>
