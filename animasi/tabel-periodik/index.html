@@ -2,102 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Montamap Periodic Table 3D</title>
+  <title>Montamap 3D Decoration</title>
   <style>
-    html, body {
-      background-color: black;
+    /* set up full-screen background iframe */
+    body, html {
       margin: 0;
+      padding: 0;
+      height: 100%;
       overflow: hidden;
-      font-family: sans-serif;
+      background: #111;
     }
-
-    .element {
-      width: 120px;
-      height: 160px;
-      box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 10px;
-      background-color: rgba(0,127,127,0.75);
-      text-align: center;
-      cursor: default;
-      color: #fff;
-    }
-
-    .number {
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      padding-top: 10px;
-    }
-
-    .symbol {
-      font-size: 48px;
-      line-height: 48px;
-    }
-
-    .details {
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
+    #periodic-deco {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 900px;
+      height: 600px;
+      transform: translate(-50%, -50%);
+      border: none;
+      pointer-events: none;       /* biar iframe cuma hiasan, gak ganggu klik */
+      opacity: 0.8;               /* tone-down supaya background tetap fokus konten utama */
     }
   </style>
 </head>
 <body>
 
-<!-- Three.js & CSS3DRenderer -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r148/examples/js/renderers/CSS3DRenderer.js"></script>
+  <!--
+    Embed the official Three.js CSS3D Periodic Table demo
+    as a non-interactive decoration via iframe.
+  -->
+  <iframe
+    id="periodic-deco"
+    src="https://threejs.org/examples/css3d_periodictable.html"
+    allow="fullscreen"
+  ></iframe>
 
-<script>
-  let camera, scene, renderer;
-  const objects = [];
-
-  init();
-  animate();
-
-  function init() {
-    camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 3000;
-
-    scene = new THREE.Scene();
-
-    // Create 20 dummy elements
-    for (let i = 0; i < 20; i++) {
-      const element = document.createElement('div');
-      element.className = 'element';
-
-      element.innerHTML = `
-        <div class="number">${i + 1}</div>
-        <div class="symbol">El</div>
-        <div class="details">Element ${i + 1}</div>
-      `;
-
-      const objectCSS = new THREE.CSS3DObject(element);
-      objectCSS.position.x = (i % 5) * 220 - 440;
-      objectCSS.position.y = -Math.floor(i / 5) * 240 + 240;
-      objectCSS.position.z = 0;
-
-      scene.add(objectCSS);
-      objects.push(objectCSS);
-    }
-
-    renderer = new THREE.CSS3DRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    window.addEventListener('resize', onWindowResize);
-  }
-
-  function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-
-  function animate() {
-    requestAnimationFrame(animate);
-    scene.rotation.y += 0.002;
-    renderer.render(scene, camera);
-  }
-</script>
+  <!--
+    Konten utama halaman kamu di sini...
+    <header>, <main>, <footer>, dsb.
+  -->
+  <main style="position: relative; z-index: 1; color: white; text-align: center; padding-top: 50px;">
+    <h1>Welcome to Montamap</h1>
+    <p>Your adventure hub, with a little cosmic flair in the background.</p>
+  </main>
 
 </body>
 </html>
