@@ -1,149 +1,238 @@
-// dna.js
 document.addEventListener('DOMContentLoaded', function() {
-  // =========================
-  // 1. THREE.JS BACKGROUND
-  // =========================
-  const bgContainer = document.createElement('div');
-  bgContainer.id = 'three-bg';
-  Object.assign(bgContainer.style, {
-    position: 'fixed', top: 0, left: 0,
-    width: '100%', height: '100%',
-    zIndex: '-1'
-  });
-  document.body.prepend(bgContainer);
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.set(0, 0, 50);
+  // ========== CUBE INTERAKTIF 3D ==========
+  const cube = document.querySelector('.cube');
+  let angleX = 0;
+  let angleY = 0;
+  let angleZ = 0;
+  let autoRotate = true;
+  
+  // Tambahkan variabel untuk reset timer
+  let autoRotateTimeout;
+  const AUTO_ROTATE_DELAY = 2000; // 2 detik setelah interaksi
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  bgContainer.appendChild(renderer.domElement);
+  if (cube) {
+    // Fungsi untuk aktifkan kembali rotasi otomatis
+    function enableAutoRotate() {
+      autoRotate = true;
+    }
+    
+    // Fungsi untuk menunda rotasi otomatis
+    function delayAutoRotate() {
+      // Clear timeout sebelumnya jika ada
+      clearTimeout(autoRotateTimeout);
+      
+      // Set timeout baru
+      autoRotateTimeout = setTimeout(enableAutoRotate, AUTO_ROTATE_DELAY);
+    }
 
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+    // Fungsi untuk menangani interaksi user
+    function handleUserInteraction() {
+      autoRotate = false;
+      delayAutoRotate();
+    }
 
-  // =========================
-  // 2. DNA HELIX 3D
-  // =========================
-  const helixCurve = new THREE.Curve();
-  helixCurve.getPoint = t => {
-    const r = 2, p = 0.5;
-    const theta = t * Math.PI * 4;  // 2 putaran
-    return new THREE.Vector3(
-      Math.cos(theta) * r,
-      (t - 0.5) * p * 20,
-      Math.sin(theta) * r
-    );
-  };
-  const helixGeo = new THREE.TubeGeometry(helixCurve, 300, 0.15, 12, false);
-  const helixMat = new THREE.MeshStandardMaterial({
-    color: 0x00ffcc,
-    emissive: 0x002222,
-    metalness: 0.2,
-    roughness: 0.4
-  });
-  const helixMesh = new THREE.Mesh(helixGeo, helixMat);
-  scene.add(helixMesh);
+    setInterval(() => {
+      if (autoRotate) {
+        angleX = 15 + 5 * Math.sin(Date.now() / 5000);
+        angleY += 1;
+    //  angleX = (angleX + 0.2) % 360;
+    //  angleY = (angleY + 1) % 360;
 
-  // =========================
-  // 3. GLOBE BUMI NIGHT
-  // =========================
-  const globeGeo = new THREE.SphereGeometry(10, 64, 64);
-  const globeMat = new THREE.MeshPhongMaterial({
-    map:        new THREE.TextureLoader().load('earth_nightmap.jpg'),
-    specularMap:new THREE.TextureLoader().load('earth_specular.jpg'),
-    specular:   new THREE.Color(0x222222),
-    shininess:  5,
-    emissive:   new THREE.Color(0x111111)
-  });
-  const globeMesh = new THREE.Mesh(globeGeo, globeMat);
-  globeMesh.rotation.y = Math.PI;
-  scene.add(globeMesh);
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+      }
+    }, 20);
 
-  // lighting
-  scene.add(new THREE.AmbientLight(0x404040, 1.1));
-  const pointLight = new THREE.PointLight(0xffffff, 1);
-  pointLight.position.set(50,50,50);
-  scene.add(pointLight);
+    // Drag to rotate (mouse)
+    let dragging = false;
+    let lastX, lastY;
 
-  // animate 3D
-  function animate3D() {
-    requestAnimationFrame(animate3D);
-    helixMesh.rotation.y += 0.006;
-    helixMesh.position.y = Math.sin(Date.now()/800) * 2;
-    globeMesh.rotation.y += 0.001;
-    renderer.render(scene, camera);
+    cube.parentElement.addEventListener('mousedown', function(e) {
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      handleUserInteraction(); // Panggil fungsi interaksi
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (dragging) {
+        let deltaX = e.clientX - lastX;
+        let deltaY = e.clientY - lastY;
+        angleY += deltaX * 0.8;
+        angleX -= deltaY * 0.8;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+        lastX = e.clientX;
+        lastY = e.clientY;
+      }
+    });
+
+    window.addEventListener('mouseup', function() {
+      if (dragging) {
+        dragging = false;
+        handleUserInteraction(); // Panggil saat interaksi selesai
+      }
+    });
+
+    // Drag to rotate (touch / mobile)
+    cube.parentElement.addEventListener('touchstart', function(e) {
+      dragging = true;
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+      handleUserInteraction(); // Panggil fungsi interaksi
+    });
+
+    window.addEventListener('touchmove', function(e) {
+      if (dragging) {
+        let deltaX = e.touches[0].clientX - lastX;
+        let deltaY = e.touches[0].clientY - lastY;
+        angleY += deltaX * 0.8;
+        angleX -= deltaY * 0.8;
+        cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    });
+
+    window.addEventListener('touchend', function() {
+      if (dragging) {
+        dragging = false;
+        handleUserInteraction();
+      }
+    });
   }
-  animate3D();
 
-  // =========================
-  // 4. PARTICLES.JS: DNA SPIRAL
-  // =========================
+  
+
+
+
+ 
+  // Initialize Particles.js dengan warna hijau
   particlesJS('particles-js', {
     particles: {
-      number: { value: 200, density: { enable: true, value_area: 1200 } },
-      color: { value: '#00ffcc' },
-      shape: {
-        type: 'edge',
-        stroke: { width: 0.5, color: '#00ffcc' }
+      number: {
+        value: 80,
+        density: {
+          enable: true,
+          value_area: 800
+        }
       },
-      opacity: { value: 0.7, random: true },
-      size: { value: 4, random: true },
+      color: {
+        value: '#39FF14' // Ubah ke hijau neon khas coding
+      },
+      shape: {
+        type: 'circle',
+        stroke: {
+          width: 0,
+          color: '#000000'
+        }
+      },
+      opacity: {
+        value: 0.8, // Tingkatkan opacity agar lebih terang
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.3, // Minimal opacity lebih tinggi
+          sync: false
+        }
+      },
+      size: {
+        value: 3,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 0.1,
+          sync: false
+        }
+      },
       line_linked: {
         enable: true,
-        distance: 60,
-        color: '#00ffcc',
-        opacity: 0.3,
+        distance: 150,
+        color: '#39FF14', // Ubah ke hijau neon
+        opacity: 0.4,    // Tingkatkan opacity garis
         width: 1
       },
       move: {
         enable: true,
-        speed: 0.5,
+        speed: 1,
+        direction: 'none',
         random: true,
-        out_mode: 'out'
+        straight: false,
+        out_mode: 'out',
+        bounce: false,
+        attract: {
+          enable: false,
+          rotateX: 600,
+          rotateY: 1200
+        }
       }
     },
     interactivity: {
       detect_on: 'canvas',
       events: {
-        onhover: { enable: true, mode: 'grab' },
-        onclick: { enable: true, mode: 'push' }
+        onhover: {
+          enable: true,
+          mode: 'grab'
+        },
+        onclick: {
+          enable: true,
+          mode: 'push'
+        },
+        resize: true
       },
       modes: {
-        grab: { distance: 120, line_linked: { opacity: 0.6 } },
-        push: { particles_nb: 5 }
+        grab: {
+          distance: 140,
+          line_linked: {
+            opacity: 1
+          }
+        },
+        push: {
+          particles_nb: 4
+        }
       }
     },
     retina_detect: true
   });
 
-  // =========================
-  // 5. INTERAKSI GLOBE DRAG
-  // =========================
-  let dragging = false, lastX, lastY, rotX = 0, rotY = 0;
-  const canvas = renderer.domElement;
-  canvas.addEventListener('mousedown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; });
-  window.addEventListener('mousemove', e => {
-    if (dragging) {
-      const dx = e.clientX - lastX, dy = e.clientY - lastY;
-      rotY += dx * 0.005;
-      rotX -= dy * 0.005;
-      lastX = e.clientX; lastY = e.clientY;
-      globeMesh.rotation.x = rotX;
-      globeMesh.rotation.y = rotY + Math.PI;
+  // CSS untuk efek glow pada partikel
+  const style = document.createElement('style');
+  style.innerHTML = `
+    #particles-js canvas {
+      filter: 
+        drop-shadow(0 0 2px #39FF14)
+        drop-shadow(0 0 5px #39FF14)
+        drop-shadow(0 0 15px #39FF14);
+      animation: glow-pulse 2s infinite alternate;
     }
-  });
-  window.addEventListener('mouseup', () => dragging = false);
+    
+    @keyframes glow-pulse {
+      0% { 
+        filter: 
+          drop-shadow(0 0 2px #39FF14)
+          drop-shadow(0 0 5px #39FF14)
+          drop-shadow(0 0 15px #39FF14);
+      }
+      100% { 
+        filter: 
+          drop-shadow(0 0 5px #39FF14)
+          drop-shadow(0 0 10px #39FF14)
+          drop-shadow(0 0 25px #39FF14);
+      }
+    }
+  `;
+  document.head.appendChild(style);
 
-    // Smooth scrolling for anchor links
+  
+
+
+
+  // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
-
+      
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         window.scrollTo({
@@ -159,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function() {
       this.classList.toggle('active');
       const panel = this.nextElementSibling;
-
+      
       if (panel.style.maxHeight) {
         panel.style.maxHeight = null;
       } else {
@@ -171,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu toggle
   const hamburger = document.querySelector('.hamburger');
   const navLinks = document.querySelector('.nav-links');
-
+  
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', function() {
       this.classList.toggle('active');
@@ -205,10 +294,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-
+      
       // Form submission logic
       const formData = new FormData(this);
-
+      
       // Simulate form submission
       fetch(this.action, {
         method: this.method,
@@ -232,6 +321,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
-
-
-
