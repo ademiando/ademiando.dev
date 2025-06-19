@@ -2,71 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>3D CSS Element Test</title>
+  <title>Montamap 3D Test</title>
   <style>
     body {
       margin: 0;
       overflow: hidden;
       background: #111;
-      font-family: sans-serif;
     }
     .element {
-      width: 120px;
-      height: 160px;
-      background: rgba(0, 127, 127, 0.75);
-      border: 2px solid #0ff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,255,255,0.5);
-      text-align: center;
-      color: white;
-      line-height: 1.2;
-    }
-    .element h3 {
-      margin: 20px 0 10px;
-      font-size: 32px;
-    }
-    .element p {
-      font-size: 16px;
-      margin: 0;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(0, 255, 255, 0.7);
+      border: 4px solid white;
+      border-radius: 20px;
+      color: black;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
 
-<!-- LIBRARY -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/renderers/CSS3DRenderer.js"></script>
+<!-- Three.js dan CSS3DRenderer versi stabil -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r148/examples/js/renderers/CSS3DRenderer.js"></script>
 
 <script>
-  // SETUP
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
-  camera.position.set(0, 0, 1000);
+
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 2000);
+  camera.position.z = 500;
 
   const renderer = new THREE.CSS3DRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // BIKIN ELEMEN HTML 3D
   const div = document.createElement('div');
   div.className = 'element';
-  div.innerHTML = '<h3>H</h3><p>Hydrogen</p>';
+  div.textContent = 'Montamap 3D!';
 
   const object = new THREE.CSS3DObject(div);
   object.position.set(0, 0, 0);
   scene.add(object);
 
-  // RENDER LOOP
   function animate() {
     requestAnimationFrame(animate);
     object.rotation.y += 0.01;
-    object.rotation.x += 0.005;
     renderer.render(scene, camera);
   }
-
   animate();
 
-  // RESPONSIVE
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
