@@ -2,31 +2,15 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logo 3D Sphere - Tabel Periodik Three.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://threejs.org/examples/js/renderers/CSS3DRenderer.js"></script>
+    <title>Logo 3D Sphere - Three.js</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            background: #000;
-            font-family: 'Arial', sans-serif;
+            margin: 0;
             overflow: hidden;
-            height: 100vh;
+            background-color: #000;
             color: #fff;
+            font-family: Arial, sans-serif;
         }
-        
-        #container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
         #info {
             position: absolute;
             top: 10px;
@@ -34,11 +18,7 @@
             text-align: center;
             z-index: 100;
             color: #fff;
-            font-size: 18px;
-            text-shadow: 0 0 5px rgba(0,0,0,0.5);
-            pointer-events: none;
         }
-        
         #menu {
             position: absolute;
             bottom: 20px;
@@ -46,64 +26,52 @@
             text-align: center;
             z-index: 100;
         }
-        
         button {
-            background: rgba(0, 30, 60, 0.7);
+            background: rgba(0,30,60,0.7);
             color: white;
-            border: 1px solid rgba(100, 150, 255, 0.5);
+            border: 1px solid rgba(100,150,255,0.5);
             padding: 8px 16px;
             margin: 0 5px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s ease;
         }
-        
         button:hover {
-            background: rgba(0, 60, 120, 0.9);
-            border-color: rgba(100, 200, 255, 0.8);
-            box-shadow: 0 0 10px rgba(100, 150, 255, 0.5);
+            background: rgba(0,60,120,0.9);
+            border-color: rgba(100,200,255,0.8);
         }
-        
         .element {
             width: 120px;
             height: 120px;
-            background: rgba(0, 30, 60, 0.7);
-            border: 1px solid rgba(100, 150, 255, 0.5);
+            background: rgba(0,30,60,0.7);
+            border: 1px solid rgba(100,150,255,0.5);
             border-radius: 4px;
-            box-shadow: 0 0 12px rgba(100, 150, 255, 0.5);
+            box-shadow: 0 0 12px rgba(100,150,255,0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            cursor: default;
             transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
         }
-        
         .element:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(100, 200, 255, 0.8);
-            background: rgba(0, 60, 120, 0.8);
+            box-shadow: 0 0 20px rgba(100,200,255,0.8);
+            background: rgba(0,60,120,0.8);
             z-index: 10;
         }
-        
         .element img {
             width: 60px;
             height: 60px;
             object-fit: contain;
             margin-bottom: 8px;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.3));
         }
-        
         .element span {
             font-size: 14px;
             text-align: center;
             font-weight: bold;
             color: #fff;
-            text-shadow: 0 0 3px rgba(0,0,0,0.8);
         }
-        
         #loading {
             position: absolute;
             top: 50%;
@@ -112,62 +80,63 @@
             color: #fff;
             font-size: 24px;
             z-index: 1000;
-            text-shadow: 0 0 10px rgba(100, 150, 255, 0.8);
         }
     </style>
 </head>
 <body>
-    <div id="container">
-        <div id="info">Logo 3D Sphere</div>
-        <div id="menu">
-            <button id="table">TABLE</button>
-            <button id="sphere">SPHERE</button>
-            <button id="helix">HELIX</button>
-            <button id="grid">GRID</button>
-            <button id="startRotation">START ROTATION</button>
-            <button id="stopRotation">STOP ROTATION</button>
-        </div>
-        <div id="loading">Memuat logo...</div>
+    <div id="info">Logo 3D Sphere</div>
+    <div id="menu">
+        <button id="table">TABLE</button>
+        <button id="sphere">SPHERE</button>
+        <button id="helix">HELIX</button>
+        <button id="grid">GRID</button>
+        <button id="startRotation">START ROTATION</button>
+        <button id="stopRotation">STOP ROTATION</button>
     </div>
+    <div id="loading">Memuat logo...</div>
 
+    <!-- Gunakan versi yang sama seperti contoh Three.js -->
+    <script src="https://threejs.org/build/three.js"></script>
+    <script src="https://threejs.org/examples/js/renderers/CSS3DRenderer.js"></script>
+    
     <script>
-        // Daftar logo dengan nama dan URL gambar
+        // Data logo - menggunakan URL dari permintaan Anda
         const logos = [
-            { name: "IOS", img: "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" },
-            { name: "Android", img: "https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" },
-            { name: "Meta", img: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" },
-            { name: "Google", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" },
-            { name: "YouTube", img: "https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" },
-            { name: "OpenWeather", img: "https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png" },
-            { name: "Mapbox", img: "https://upload.wikimedia.org/wikipedia/commons/4/49/Mapbox_logo_2017.svg" },
+            { name: "IOS", img: "assets/apple.png" },
+            { name: "Android", img: "assets/android.png" },
+            { name: "Meta", img: "assets/meta.png" },
+            { name: "Google", img: "assets/google.png" },
+            { name: "YouTube", img: "assets/youtube.png" },
+            { name: "OpenWeather", img: "assets/openweather.png" },
+            { name: "Mapbox", img: "assets/mapbox.png" },
             { name: "GitHub", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
             { name: "Supabase", img: "https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" },
             { name: "Firebase", img: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg" },
             { name: "Stripe", img: "https://cdn.worldvectorlogo.com/logos/stripe-3.svg" },
             { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" },
             { name: "MetaMask", img: "https://cdn.worldvectorlogo.com/logos/metamask.svg" },
-            { name: "CoinMarketCap", img: "https://upload.wikimedia.org/wikipedia/commons/3/39/CoinMarketCap_Logo.png" },
-            { name: "OpenSea", img: "https://storage.googleapis.com/opensea-static/Logomark/Logomark-Blue.svg" },
-            { name: "USDT", img: "https://cryptologos.cc/logos/tether-usdt-logo.svg" },
-            { name: "USDC", img: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg" },
+            { name: "CoinMarketCap", img: "assets/cmc.png" },
+            { name: "OpenSea", img: "assets/opensea.png" },
+            { name: "USDT", img: "assets/usdt.png" },
+            { name: "USDC", img: "assets/usdc.png" },
             { name: "Solana", img: "https://solana.com/src/img/branding/solanaLogoMark.svg" },
-            { name: "PayPal", img: "https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" },
-            { name: "Visa", img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" },
-            { name: "Mastercard", img: "https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" },
-            { name: "AmericanExpress", img: "https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" },
-            { name: "eMoney", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Emoney-1.svg" },
-            { name: "Ovo", img: "https://upload.wikimedia.org/wikipedia/id/thumb/4/45/OVO_logo.svg/1200px-OVO_logo.svg.png" },
-            { name: "Gopay", img: "https://upload.wikimedia.org/wikipedia/commons/0/0a/GoPay_logo.svg" },
-            { name: "Dana", img: "https://upload.wikimedia.org/wikipedia/commons/7/72/DANA_logo.svg" },
-            { name: "LinkAja", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/LinkAja.svg/1200px-LinkAja.svg.png" },
-            { name: "ShopeePay", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/ShopeePay_logo.svg/1200px-ShopeePay_logo.svg.png" },
-            { name: "BCA", img: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" },
-            { name: "BRI", img: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Bank_Rakyat_Indonesia_%28BRI%29_logo.svg" },
-            { name: "Mandiri", img: "https://upload.wikimedia.org/wikipedia/commons/7/72/Bank_Mandiri_logo_2016.svg" },
-            { name: "BNI", img: "https://upload.wikimedia.org/wikipedia/commons/5/55/BNI_logo.svg" },
-            { name: "QRIS", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" },
-            { name: "Indomaret", img: "https://upload.wikimedia.org/wikipedia/commons/9/9f/Indomaret_logo.svg" },
-            { name: "Alfamart", img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Alfamart_logo.svg" },
+            { name: "PayPal", img: "assets/paypal.png" },
+            { name: "Visa", img: "assets/visa.png" },
+            { name: "Mastercard", img: "assets/mastercard.png" },
+            { name: "AmericanExpress", img: "assets/amex.png" },
+            { name: "eMoney", img: "assets/emoney.png" },
+            { name: "Ovo", img: "assets/ovo.png" },
+            { name: "Gopay", img: "assets/gopay.png" },
+            { name: "Dana", img: "assets/dana.png" },
+            { name: "LinkAja", img: "assets/linkaja.png" },
+            { name: "ShopeePay", img: "assets/spay.png" },
+            { name: "BCA", img: "assets/bca.png" },
+            { name: "BRI", img: "assets/bri.png" },
+            { name: "Mandiri", img: "assets/mandiri.png" },
+            { name: "BNI", img: "assets/bni.png" },
+            { name: "QRIS", img: "assets/qris.png" },
+            { name: "Indomaret", img: "assets/indomaret.png" },
+            { name: "Alfamart", img: "assets/alfamart.png" },
             { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
             { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
             { name: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
@@ -182,25 +151,25 @@
             { name: "Axios", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-original.svg" },
             { name: "Swagger", img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" }
         ];
-        
+
         // Variabel global
         let camera, scene, renderer;
         let objects = [];
         let targets = { table: [], sphere: [], helix: [], grid: [] };
         let isRotating = true;
-        
+
         // Inisialisasi
         init();
         animate();
-        
+
         function init() {
             // Setup kamera
             camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
             camera.position.z = 3000;
-            
+
             // Setup scene
             scene = new THREE.Scene();
-            
+
             // Buat elemen untuk setiap logo
             for (let i = 0; i < logos.length; i++) {
                 const element = document.createElement('div');
@@ -227,112 +196,117 @@
                 scene.add(object);
                 objects.push(object);
             }
-            
+
             // Buat target posisi untuk tata letak tabel
-            const tableLayout = [
-                [0, 0, 0], [1, 0, 0], [2, 0, 0], [3, 0, 0], [4, 0, 0], [5, 0, 0], [6, 0, 0], [7, 0, 0],
-                [0, 1, 0], [1, 1, 0], [2, 1, 0], [3, 1, 0], [4, 1, 0], [5, 1, 0], [6, 1, 0], [7, 1, 0],
-                [0, 2, 0], [1, 2, 0], [2, 2, 0], [3, 2, 0], [4, 2, 0], [5, 2, 0], [6, 2, 0], [7, 2, 0],
-                [0, 3, 0], [1, 3, 0], [2, 3, 0], [3, 3, 0], [4, 3, 0], [5, 3, 0], [6, 3, 0], [7, 3, 0],
-                [0, 4, 0], [1, 4, 0], [2, 4, 0], [3, 4, 0], [4, 4, 0], [5, 4, 0], [6, 4, 0], [7, 4, 0],
-                [0, 5, 0], [1, 5, 0], [2, 5, 0], [3, 5, 0], [4, 5, 0], [5, 5, 0], [6, 5, 0], [7, 5, 0],
-                [0, 6, 0], [1, 6, 0], [2, 6, 0], [3, 6, 0]
-            ];
+            const tableLayout = [];
+            const totalRows = Math.ceil(logos.length / 8);
             
-            for (let i = 0; i < Math.min(logos.length, tableLayout.length); i++) {
+            for (let row = 0; row < totalRows; row++) {
+                for (let col = 0; col < 8; col++) {
+                    if (row * 8 + col < logos.length) {
+                        tableLayout.push([col, row, 0]);
+                    }
+                }
+            }
+
+            for (let i = 0; i < logos.length; i++) {
                 const item = tableLayout[i];
                 const target = {
-                    x: (item[0] * 180) - 630,
-                    y: -(item[1] * 180) + 540,
+                    x: (item[0] * 180) - (7 * 180) / 2 + 90,
+                    y: -(item[1] * 180) + (totalRows * 180) / 2 - 90,
                     z: item[2]
                 };
                 targets.table.push(target);
             }
-            
+
             // Buat target posisi untuk tata letak bola
             const vector = new THREE.Vector3();
             for (let i = 0; i < objects.length; i++) {
                 const phi = Math.acos(-1 + (2 * i) / objects.length);
                 const theta = Math.sqrt(objects.length * Math.PI) * phi;
                 
-                const target = {
-                    x: 1000 * Math.cos(theta) * Math.sin(phi),
-                    y: 1000 * Math.sin(theta) * Math.sin(phi),
-                    z: 1000 * Math.cos(phi)
-                };
-                targets.sphere.push(target);
+                vector.setFromSphericalCoords(1000, phi, theta);
+                
+                targets.sphere.push({
+                    x: vector.x,
+                    y: vector.y,
+                    z: vector.z
+                });
             }
-            
+
             // Buat target posisi untuk tata letak helix
             for (let i = 0; i < objects.length; i++) {
                 const theta = i * 0.175 + Math.PI;
-                const y = -(i * 8) + 450;
+                const y = -(i * 8) + (objects.length * 8) / 2;
                 
-                const target = {
+                targets.helix.push({
                     x: 1000 * Math.sin(theta),
                     y: y,
                     z: 1000 * Math.cos(theta)
-                };
-                targets.helix.push(target);
+                });
             }
-            
+
             // Buat target posisi untuk tata letak grid
             for (let i = 0; i < objects.length; i++) {
-                const target = {
-                    x: ((i % 8) * 180) - 630,
-                    y: (-(Math.floor(i / 8) % 8) * 180 + 540,
+                targets.grid.push({
+                    x: ((i % 8) * 180) - (7 * 180) / 2 + 90,
+                    y: (-(Math.floor(i / 8) % 8) * 180 + 450,
                     z: 0
-                };
-                targets.grid.push(target);
+                });
             }
-            
+
             // Setup renderer
             renderer = new THREE.CSS3DRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.domElement.style.position = 'absolute';
-            document.getElementById('container').appendChild(renderer.domElement);
-            
+            document.body.appendChild(renderer.domElement);
+
             // Setup event listeners
-            setupEventListeners();
+            document.getElementById('table').addEventListener('click', function() {
+                transform(targets.table, 2000);
+            }, false);
             
+            document.getElementById('sphere').addEventListener('click', function() {
+                transform(targets.sphere, 2000);
+            }, false);
+            
+            document.getElementById('helix').addEventListener('click', function() {
+                transform(targets.helix, 2000);
+            }, false);
+            
+            document.getElementById('grid').addEventListener('click', function() {
+                transform(targets.grid, 2000);
+            }, false);
+            
+            document.getElementById('startRotation').addEventListener('click', function() {
+                isRotating = true;
+            }, false);
+            
+            document.getElementById('stopRotation').addEventListener('click', function() {
+                isRotating = false;
+            }, false);
+
             // Atur tata letak awal
             transform(targets.table, 2000);
-            
-            // Sembunyikan loading
-            setTimeout(() => {
+
+            // Sembunyikan loading setelah semua gambar dimuat
+            const imagePromises = [];
+            document.querySelectorAll('img').forEach(img => {
+                const p = new Promise(resolve => {
+                    if (img.complete) resolve();
+                    else img.onload = resolve;
+                });
+                imagePromises.push(p);
+            });
+
+            Promise.all(imagePromises).then(() => {
                 document.getElementById('loading').style.display = 'none';
-            }, 1500);
-            
+            });
+
             // Handle resize
-            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('resize', onWindowResize, false);
         }
-        
-        function setupEventListeners() {
-            document.getElementById('table').addEventListener('click', () => {
-                transform(targets.table, 2000);
-            });
-            
-            document.getElementById('sphere').addEventListener('click', () => {
-                transform(targets.sphere, 2000);
-            });
-            
-            document.getElementById('helix').addEventListener('click', () => {
-                transform(targets.helix, 2000);
-            });
-            
-            document.getElementById('grid').addEventListener('click', () => {
-                transform(targets.grid, 2000);
-            });
-            
-            document.getElementById('startRotation').addEventListener('click', () => {
-                isRotating = true;
-            });
-            
-            document.getElementById('stopRotation').addEventListener('click', () => {
-                isRotating = false;
-            });
-        }
-        
+
         function transform(targets, duration) {
             TWEEN.removeAll();
             
@@ -351,13 +325,13 @@
                     .start();
             }
         }
-        
+
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
-        
+
         function animate() {
             requestAnimationFrame(animate);
             
@@ -372,7 +346,7 @@
             
             renderer.render(scene, camera);
         }
-        
+
         // Implementasi TWEEN.js sederhana
         const TWEEN = {
             _tweens: [],
