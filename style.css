@@ -94,10 +94,41 @@ body {
   color: var(--accent-color);
 }
 
+/* .logo-icon {
+  margin-right: 10px;
+  color: var(--accent-color);
+} */
+
+
+
+
+
+
+
+
+
 .logo-icon {
   margin-right: 10px;
   color: var(--accent-color);
+  text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+  animation: glow 2s ease-in-out infinite alternate;
 }
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 2px var(--accent-color);
+    transform: translateY(0px);
+  }
+  to {
+    text-shadow: 0 0 12px var(--accent-color);
+    transform: translateY(-2px);
+  }
+}
+
+
+
+
+
 
 .nav-links {
   display: flex;
