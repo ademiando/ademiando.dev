@@ -116,15 +116,12 @@ body {
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 2px var(--accent-color);
-    transform: translateY(0px);
+    text-shadow: 0 0 5px var(--accent-color);
   }
   to {
-    text-shadow: 0 0 12px var(--accent-color);
-    transform: translateY(-2px);
+    text-shadow: 0 0 15px var(--accent-color);
   }
 }
-
 
 
 
