@@ -298,8 +298,8 @@ body {
 
 .face {
   position: absolute;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   background: rgba(25, 25, 25, 0.4);
   /* border: 0.2px solid rgba(255, 255, 255, 0.3); */
   border: 0.2px solid black;
