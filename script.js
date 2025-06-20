@@ -101,9 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  
  
-  // Initialize Particles.js
+
+ 
+  // Initialize Particles.js warna hijau
   particlesJS('particles-js', {
     particles: {
       number: {
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       },
       color: {
-        value: '#FFD700'
+        value: '#39FF14' // hijau neon
       },
       shape: {
         type: 'circle',
@@ -124,12 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       },
       opacity: {
-        value: 0.5,
+        value: 0.8, // Tingkatan opacity
         random: true,
         anim: {
           enable: true,
           speed: 1,
-          opacity_min: 0.1,
+          opacity_min: 0.3, // Minimal opacity
           sync: false
         }
       },
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         random: true,
         anim: {
           enable: true,
-          speed: 2,
+          speed: 3,
           size_min: 0.1,
           sync: false
         }
@@ -146,8 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
       line_linked: {
         enable: true,
         distance: 150,
-        color: '#FFD700',
-        opacity: 0.2,
+        color: '#39FF14', // Hijau neon
+        opacity: 0.4,    // Opacity garis
         width: 1
       },
       move: {
@@ -192,6 +193,35 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     retina_detect: true
   });
+
+  // CSS untuk efek glow pada partikel
+  const style = document.createElement('style');
+  style.innerHTML = `
+    #particles-js canvas {
+      filter: 
+        drop-shadow(0 0 2px #39FF14)
+        drop-shadow(0 0 5px #39FF14)
+        drop-shadow(0 0 15px #39FF14);
+      animation: glow-pulse 2s infinite alternate;
+    }
+    
+    @keyframes glow-pulse {
+      0% { 
+        filter: 
+          drop-shadow(0 0 2px #39FF14)
+          drop-shadow(0 0 5px #39FF14)
+          drop-shadow(0 0 15px #39FF14);
+      }
+      100% { 
+        filter: 
+          drop-shadow(0 0 5px #39FF14)
+          drop-shadow(0 0 10px #39FF14)
+          drop-shadow(0 0 25px #39FF14);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
 
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
