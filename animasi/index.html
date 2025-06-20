@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Sphere 3D - Three.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://threejs.org/examples/js/renderers/CSS3DRenderer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: white;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            color: #e0e0e0;
+        }
+        
+        .scene-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #scene {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            flex-wrap: wrap;
+            z-index: 10;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: #4cc9f0;
+            box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
+        }
+        
+        .element {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+        
+        .element:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(76, 201, 240, 0.6);
+            z-index: 100;
+        }
+        
+        .element img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+        }
+        
+        .element span {
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 10;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 80%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Logo 3D Sphere</h1>
+            <p class="subtitle">Tampilan interaktif logo teknologi dalam bentuk bola 3D yang berputar. Klik tombol di bawah untuk mengontrol rotasi atau pilih tata letak yang berbeda.</p>
+        </header>
+        
+        <div class="scene-container">
+            <div id="scene"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="rotateLeft" class="btn">Putar Kiri</button>
+            <button id="rotateRight" class="btn">Putar Kanan</button>
+            <button id="toggleRotation" class="btn active">Berhenti Berputar</button>
+            <button id="sphereLayout" class="btn">Tata Letak Sphere</button>
+            <button id="gridLayout" class="btn">Tata Letak Grid</button>
+        </div>
+        
+        <div class="footer">
+            Dibuat dengan Three.js | CSS3DRenderer | Total Logo: 50
+        </div>
+    </div>
+    
+    <div class="particles" id="particles"></div>
+
+    <script>
+        // Inisialisasi scene Three.js
+        let camera, scene, renderer;
+        let objects = [];
+        let targets = { sphere: [], grid: [] };
+        let currentLayout = 'sphere';
+        let autoRotate = true;
+        let rotationSpeed = 0.002;
+        
+        // Daftar logo
+        const logos = [
+            { name: "IOS", img: "assets/apple.png" },
+            { name: "Android", img: "assets/android.png" },
+            { name: "Meta", img: "assets/meta.png" },
+            { name: "Google", img: "assets/google.png" },
+            { name: "YouTube", img: "assets/youtube.png" },
+            { name: "OpenWeather", img: "assets/openweather.png" },
+            { name: "Mapbox", img: "assets/mapbox.png" },
+            { name: "GitHub", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+            { name: "Supabase", img: "https://seeklogo.com/images/S/supabase-logo-DCC676FFE2-seeklogo.com.png" },
+            { name: "Firebase", img: "https://cdn.worldvectorlogo.com/logos/firebase-1.svg" },
+            { name: "Stripe", img: "https://cdn.worldvectorlogo.com/logos/stripe-3.svg" },
+            { name: "Tailwind CSS", img: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg" },
+            { name: "MetaMask", img: "https://cdn.worldvectorlogo.com/logos/metamask.svg" },
+            { name: "CoinMarketCap", img: "assets/cmc.png" },
+            { name: "OpenSea", img: "assets/opensea.png" },
+            { name: "USDT", img: "assets/usdt.png" },
+            { name: "USDC", img: "assets/usdc.png" },
+            { name: "Solana", img: "https://solana.com/src/img/branding/solanaLogoMark.svg" },
+            { name: "PayPal", img: "assets/paypal.png" },
+            { name: "Visa", img: "assets/visa.png" },
+            { name: "Mastercard", img: "assets/mastercard.png" },
+            { name: "AmericanExpress", img: "assets/amex.png" },
+            { name: "eMoney", img: "assets/emoney.png" },
+            { name: "Ovo", img: "assets/ovo.png" },
+            { name: "Gopay", img: "assets/gopay.png" },
+            { name: "Dana", img: "assets/dana.png" },
+            { name: "LinkAja", img: "assets/linkaja.png" },
+            { name: "ShopeePay", img: "assets/spay.png" },
+            { name: "BCA", img: "assets/bca.png" },
+            { name: "BRI", img: "assets/bri.png" },
+            { name: "Mandiri", img: "assets/mandiri.png" },
+            { name: "BNI", img: "assets/bni.png" },
+            { name: "QRIS", img: "assets/qris.png" },
+            { name: "Indomaret", img: "assets/indomaret.png" },
+            { name: "Alfamart", img: "assets/alfamart.png" },
+            { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+            { name: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+            { name: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+            { name: "Express", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+            { name: "MongoDB", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+            { name: "Docker", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+            { name: "Vercel", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
+            { name: "TypeScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+            { name: "Figma", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+            { name: "Webpack", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" },
+            { name: "Jest", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
+            { name: "Axios", img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-original.svg" },
+            { name: "Swagger", img: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Swagger-logo.png" }
+        ];
+        
+        // Fungsi untuk membuat partikel latar belakang
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 100;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posisi acak
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Animasi
+                const duration = 20 + Math.random() * 30;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s ${delay}s infinite linear`;
+                
+                // Ukuran dan opacity
+                const size = 1 + Math.random() * 3;
+                const opacity = 0.1 + Math.random() * 0.3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.opacity = opacity;
+                
+                container.appendChild(particle);
+            }
+            
+            // Tambahkan style untuk animasi
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% {
+                        transform: translate(0, 0);
+                    }
+                    100% {
+                        transform: translate(${Math.random() * 100 - 50}vw, ${Math.random() * 100 - 50}vh);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // Inisialisasi scene
+        function init() {
+            // Buat partikel latar belakang
+            createParticles();
+            
+            // Inisialisasi kamera
+            camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
+            camera.position.z = 3000;
+            
+            // Inisialisasi scene
+            scene = new THREE.Scene();
+            
+            // Buat elemen untuk setiap logo
+            for (let i = 0; i < logos.length; i++) {
+                const element = document.createElement('div');
+                element.className = 'element';
+                
+                const img = document.createElement('img');
+                img.src = logos[i].img;
+                img.alt = logos[i].name;
+                element.appendChild(img);
+                
+                const span = document.createElement('span');
+                span.textContent = logos[i].name;
+                element.appendChild(span);
+                
+                // Handle error gambar
+                img.onerror = function() {
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="%23ddd"/><text x="50%" y="50%" font-size="12" text-anchor="middle" dominant-baseline="middle" fill="%23888">Image</text></svg>';
+                };
+                
+                const object = new THREE.CSS3DObject(element);
+                scene.add(object);
+                objects.push(object);
+            }
+            
+            // Buat target posisi untuk layout sphere
+            const vector = new THREE.Vector3();
+            const spherical = new THREE.Spherical();
+            
+            for (let i = 0, l = objects.length; i < l; i++) {
+                const phi = Math.acos(-1 + (2 * i) / l);
+                const theta = Math.sqrt(l * Math.PI) * phi;
+                
+                spherical.set(1000, phi, theta);
+                vector.setFromSpherical(spherical);
+                
+                targets.sphere.push({
+                    x: vector.x,
+                    y: vector.y,
+                    z: vector.z,
+                    element: objects[i].element
+                });
+            }
+            
+            // Buat target posisi untuk layout grid
+            for (let i = 0; i < objects.length; i++) {
+                const row = Math.floor(i / 8);
+                const col = i % 8;
+                
+                targets.grid.push({
+                    x: ((col - 3.5) * 180),
+                    y: ((3.5 - row) * 180),
+                    z: 0,
+                    element: objects[i].element
+                });
+            }
+            
+            // Inisialisasi renderer
+            renderer = new THREE.CSS3DRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('scene').appendChild(renderer.domElement);
+            
+            // Setup event listener
+            setupEventListeners();
+            
+            // Atur layout awal
+            transform(targets.sphere, 2000);
+            
+            // Mulai animasi
+            animate();
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Tombol rotasi
+            document.getElementById('rotateLeft').addEventListener('click', () => {
+                rotateScene(0.02);
+            });
+            
+            document.getElementById('rotateRight').addEventListener('click', () => {
+                rotateScene(-0.02);
+            });
+            
+            // Toggle rotasi otomatis
+            const toggleBtn = document.getElementById('toggleRotation');
+            toggleBtn.addEventListener('click', () => {
+                autoRotate = !autoRotate;
+                toggleBtn.textContent = autoRotate ? 'Berhenti Berputar' : 'Mulai Berputar';
+                toggleBtn.classList.toggle('active', !autoRotate);
+            });
+            
+            // Tombol layout
+            document.getElementById('sphereLayout').addEventListener('click', () => {
+                if (currentLayout !== 'sphere') {
+                    currentLayout = 'sphere';
+                    transform(targets.sphere, 2000);
+                }
+            });
+            
+            document.getElementById('gridLayout').addEventListener('click', () => {
+                if (currentLayout !== 'grid') {
+                    currentLayout = 'grid';
+                    transform(targets.grid, 2000);
+                }
+            });
+            
+            // Resize handler
+            window.addEventListener('resize', onWindowResize);
+        }
+        
+        // Fungsi untuk memutar scene
+        function rotateScene(amount) {
+            scene.rotation.y += amount;
+        }
+        
+        // Fungsi untuk animasi transformasi ke target
+        function transform(targets, duration) {
+            TWEEN.removeAll();
+            
+            for (let i = 0; i < objects.length; i++) {
+                const object = objects[i];
+                const target = targets[i];
+                
+                new TWEEN.Tween(object.position)
+                    .to({ x: target.x, y: target.y, z: target.z }, Math.random() * duration + duration)
+                    .easing(TWEEN.Easing.Exponential.Out)
+                    .start();
+                
+                new TWEEN.Tween(object.rotation)
+                    .to({ x: 0, y: 0, z: 0 }, Math.random() * duration + duration)
+                    .easing(TWEEN.Easing.Exponential.Out)
+                    .start();
+            }
+        }
+        
+        // Handler resize window
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+        
+        // Fungsi animasi utama
+        function animate() {
+            requestAnimationFrame(animate);
+            TWEEN.update();
+            
+            if (autoRotate) {
+                scene.rotation.y -= rotationSpeed;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        
+        // Inisialisasi TWEEN.js
+        const TWEEN = (function() {
+            class Tween {
+                constructor(object) {
+                    this.object = object;
+                    this.valuesStart = {};
+                    this.valuesEnd = {};
+                    this.duration = 1000;
+                    this.easingFunction = TWEEN.Easing.Linear.None;
+                    this.startTime = 0;
+                    this.isPlaying = false;
+                }
+                
+                to(properties, duration) {
+                    this.valuesEnd = properties;
+                    if (duration !== undefined) this.duration = duration;
+                    return this;
+                }
+                
+                easing(easing) {
+                    this.easingFunction = easing;
+                    return this;
+                }
+                
+                start(time = Date.now()) {
+                    this.startTime = time;
+                    this.isPlaying = true;
+                    
+                    for (const property in this.valuesEnd) {
+                        this.valuesStart[property] = this.object[property];
+                    }
+                    
+                    return this;
+                }
+                
+                update(time = Date.now()) {
+                    if (!this.isPlaying) return false;
+                    
+                    let elapsed = time - this.startTime;
+                    if (elapsed > this.duration) elapsed = this.duration;
+                    
+                    const progress = this.easingFunction(elapsed / this.duration);
+                    
+                    for (const property in this.valuesEnd) {
+                        const start = this.valuesStart[property];
+                        const end = this.valuesEnd[property];
+                        this.object[property] = start + (end - start) * progress;
+                    }
+                    
+                    if (elapsed === this.duration) {
+                        this.isPlaying = false;
+                        return false;
+                    }
+                    
+                    return true;
+                }
+            }
+            
+            Tween.Easing = {
+                Linear: {
+                    None: function(k) { return k; }
+                },
+                Exponential: {
+                    Out: function(k) { return k === 1 ? 1 : 1 - Math.pow(2, -10 * k); }
+                }
+            };
+            
+            const tweens = [];
+            
+            return {
+                Tween: Tween,
+                
+                add: function(tween) {
+                    tweens.push(tween);
+                },
+                
+                remove: function(tween) {
+                    const index = tweens.indexOf(tween);
+                    if (index !== -1) tweens.splice(index, 1);
+                },
+                
+                removeAll: function() {
+                    tweens.length = 0;
+                },
+                
+                update: function(time = Date.now()) {
+                    if (tweens.length === 0) return false;
+                    
+                    for (let i = tweens.length - 1; i >= 0; i--) {
+                        if (!tweens[i].update(time)) {
+                            tweens.splice(i, 1);
+                        }
+                    }
+                    
+                    return true;
+                }
+            };
+        })();
+        
+        // Mulai aplikasi
+        window.onload = init;
+    </script>
+</body>
+</html>
