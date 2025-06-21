@@ -301,13 +301,13 @@ body {
   width: 200px;
   height: 200px;
   background: rgba(25, 25, 25, 0.4);
-  border: 0.2px solid #F0F0EC;
+  border: 0.2px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 4rem;
   /* color: black; */
-  color: #F0F0EC; /* putih keabu */
+  color: #95AE98;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
