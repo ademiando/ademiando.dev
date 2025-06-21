@@ -771,7 +771,7 @@ body {
 
 /* Footer */
 .glass-footer {
-  background: #333;
+  background: radial-gradient(circle at bottom, #1a1a1a, #000000);
   /* background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
