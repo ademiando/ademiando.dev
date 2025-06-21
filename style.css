@@ -310,13 +310,16 @@ body {
   color: #95AE98;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  
+  box-shadow: inset 0 0 10px rgba(149, 174, 152, 0.3), 
+              0 0 20px rgba(0, 0, 0, 0.5);
+
 }
 
 
 
 
-
-
+  
 
 
 
