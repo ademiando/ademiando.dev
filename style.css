@@ -1019,7 +1019,7 @@ body {
   .floating-cube {
     width: 100px;
     height: 100px; /* 200 */
-    margin-top: 30px;
+    margin-top: 15px;
   }
   
   .face {
@@ -1086,7 +1086,7 @@ body {
   
   /* Footer */
   .footer-container {
-    gap: 40px;  /* 30 */
+    gap: 30px;
   }
   
   .footer-links,
