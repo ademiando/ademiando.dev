@@ -1017,14 +1017,14 @@ body {
   
   /* Floating cube animation */
   .floating-cube {
-    width: 100px;
-    height: 100px; /* 200 */
-    margin-top: 15px;
+    width: 150px;
+    height: 150px; /* 200 */
+    margin-top: 35px;
   }
   
   .face {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     font-size: 2.5rem;
   }
   
