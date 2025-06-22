@@ -278,12 +278,6 @@ body {
   perspective: 1000px;
 }
 
-
-
-
-
-
-
 .cube {
   width: 100%;
   height: 100%;
@@ -320,9 +314,6 @@ body {
 
 
   
-
-
-
 
 
 .face.front  { transform: translateZ(150px); }
@@ -763,15 +754,6 @@ body {
   color: var(--text-secondary);
 }
 
-
-
-
-
-
-
-
-
-
 /* Footer */
 .glass-footer {
   background: radial-gradient(circle at bottom, #1a1a1a, #000000);
@@ -1035,14 +1017,14 @@ body {
   
   /* Floating cube animation */
   .floating-cube {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px; /* 200 */
     margin-top: 30px;
   }
   
   .face {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     font-size: 2.5rem;
   }
   
@@ -1104,7 +1086,7 @@ body {
   
   /* Footer */
   .footer-container {
-    gap: 30px;
+    gap: 40px;  /* 30 */
   }
   
   .footer-links,
