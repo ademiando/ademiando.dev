@@ -1112,3 +1112,56 @@ body {
     padding: 100px 20px 30px;
   }
 }
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------
+   HORIZONTAL SCROLL PADA MOBILE
+---------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Portfolio Section */
+  #portfolio .portfolio-grid {
+    display: flex;
+    flex-wrap: nowrap;            /* Jangan pecah baris */
+    overflow-x: auto;             /* Scroll horizontal */
+    -webkit-overflow-scrolling: touch; /* Inertia scrolling di iOS */
+    gap: 1rem;                     /* Jarak antar card */
+    padding-bottom: 1rem;         /* Ruang bawah untuk scroll bar */
+    scroll-snap-type: x mandatory;/* Snap ke tiap item */
+  }
+
+  #portfolio .portfolio-card {
+    flex: 0 0 80%;                 /* Lebar tiap card 80% viewport */
+    scroll-snap-align: start;      /* Snap to start of card */
+    margin-right: 0;               /* Gap sudah diatur di container */
+  }
+
+  /* Paket Section */
+  #paket .paket-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  #paket .paket-card {
+    flex: 0 0 80%;
+    scroll-snap-align: start;
+    margin-right: 0;
+  }
+
+  /* Optional: sembunyikan scrollbar pada WebKit browsers */
+  #portfolio .portfolio-grid::-webkit-scrollbar,
+  #paket .paket-container::-webkit-scrollbar {
+    display: none;
+  }
+}
