@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(() => {
       if (autoRotate) {
 
-        angleX = 15 + 5 * Math.sin(Date.now() / 8000);
+        angleX = 15 + 5 * Math.sin(Date.now() / 5000);
         angleY += 0,5;
 
     //  angleX = (angleX + 0.1) % 360;
