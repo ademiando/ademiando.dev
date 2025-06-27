@@ -1165,3 +1165,62 @@ body {
     display: none;
   }
 }
+
+
+
+
+/* ----------------------------------------------------
+   TIPOGRAFI & TOMBOL WHATSAPP RESPONSIF
+---------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Kecilkan teks judul & deskripsi paket */
+  #paket .section-header h2 {
+    font-size: 1.5rem;      /* sebelumnya ~2rem */
+  }
+  #paket .section-header p {
+    font-size: 0.9rem;      /* sebelumnya ~1rem */
+  }
+
+  /* Kecilkan teks fitur paket */
+  #paket .paket-features li {
+    font-size: 0.8rem;      /* ringkas dan mudah dibaca */
+    line-height: 1.3;
+  }
+
+  /* Sesuaikan ukuran harga */
+  #paket .paket-price {
+    font-size: 1.2rem;      /* dari ~1.5rem jadi 1.2rem */
+  }
+
+  /* Tombol WhatsApp: full-width dan padding optimal */
+  #paket .cta-wa {
+    display: inline-block;
+    width: 100%;            /* lebar penuh container */
+    text-align: center;
+    font-size: 0.9rem;      /* agar tombol tidak terlalu “berisik” */
+    padding: 0.6rem 0;      /* vertikal nyaman di-tap */
+    border-radius: 0.5rem;  /* soft corner */
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+
+/* ----------------------------------------------------
+   NON-ACTIVEANIMASI PADA PAKET SECTION
+---------------------------------------------------- */
+@media screen and (max-width: 768px) {
+  /* Matikan animasi floating */
+  #paket .paket-card.floating,
+  #paket .paket-card.floating * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Pastikan tidak ada transform residual */
+  #paket .paket-card.floating {
+    transform: none !important;
+  }
+}
