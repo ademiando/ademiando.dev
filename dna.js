@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
       }
-    }, 20);
+    }, 15);
 
     // Drag to rotate (mouse)
     let dragging = false;
@@ -106,130 +106,75 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
  
-  // Initialize Particles.js dengan warna hijau
-  particlesJS('particles-js', {
-    particles: {
-      number: {
-        value: 80,
-        density: {
-          enable: true,
-          value_area: 800
-        }
-      },
-      color: {
-        value: '#39FF14' // Ubah ke hijau neon khas coding
-      },
-      shape: {
-        type: 'circle',
-        stroke: {
-          width: 0,
-          color: '#000000'
-        }
-      },
-      opacity: {
-        value: 0.8, // Tingkatkan opacity agar lebih terang
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1,
-          opacity_min: 0.3, // Minimal opacity lebih tinggi
-          sync: false
-        }
-      },
-      size: {
-        value: 3,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 3,
-          size_min: 0.1,
-          sync: false
-        }
-      },
-      line_linked: {
+  // 1) Particles.js config – performa diutamakan
+particlesJS('particles-js', {
+  particles: {
+    number: {
+      value: 40,           // turunkan dari 80 → 40
+      density: {
         enable: true,
-        distance: 150,
-        color: '#39FF14', // Ubah ke hijau neon
-        opacity: 0.4,    // Tingkatkan opacity garis
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 1,
-        direction: 'none',
-        random: true,
-        straight: false,
-        out_mode: 'out',
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200
-        }
+        value_area: 600     // area density dikurangi
       }
     },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: {
-          enable: true,
-          mode: 'grab'
-        },
-        onclick: {
-          enable: true,
-          mode: 'push'
-        },
-        resize: true
-      },
-      modes: {
-        grab: {
-          distance: 140,
-          line_linked: {
-            opacity: 1
-          }
-        },
-        push: {
-          particles_nb: 4
-        }
-      }
+    color: {
+      value: '#39FF14'
     },
-    retina_detect: true
-  });
-
-  // CSS untuk efek glow pada partikel
-  const style = document.createElement('style');
-  style.innerHTML = `
-    #particles-js canvas {
-      filter: 
-        drop-shadow(0 0 2px #39FF14)
-        drop-shadow(0 0 5px #39FF14)
-        drop-shadow(0 0 15px #39FF14);
-      animation: glow-pulse 2s infinite alternate;
+    shape: {
+      type: 'circle',
+      stroke: { width: 0, color: '#000' }
+    },
+    opacity: {
+      value: 0.5,           // kurangi opacity default
+      random: false,        // matikan animasi opacity
+      anim: { enable: false }
+    },
+    size: {
+      value: 2,             // ukuran partikel diperkecil
+      random: true,
+      anim: { enable: false } // matikan animasi size
+    },
+    line_linked: {
+      enable: false         // matikan garis penghubung
+    },
+    move: {
+      enable: true,
+      speed: 0.6,           // turunkan kecepatan
+      direction: 'none',
+      random: true,
+      straight: false,
+      out_mode: 'out',
+      bounce: false
     }
-    
-    @keyframes glow-pulse {
-      0% { 
-        filter: 
-          drop-shadow(0 0 2px #39FF14)
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 15px #39FF14);
-      }
-      100% { 
-        filter: 
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 10px #39FF14)
-          drop-shadow(0 0 25px #39FF14);
-      }
+  },
+  interactivity: {
+    detect_on: 'canvas',
+    events: {
+      onhover: { enable: false }, // matikan hover grab
+      onclick: { enable: false }, // matikan klik push
+      resize: true
     }
-  `;
-  document.head.appendChild(style);
+  },
+  retina_detect: false        // matikan retina detect
+});
 
-  
+
+
+
+
+
+/* 2) CSS glow – minimalis & static */
+#particles-js canvas {
+  /* Hapus drop-shadow berlapis, cukup satu saja */
+  filter: drop-shadow(0 0 4px #39FF14);
+  /* Hapus animasi glow untuk performa */
+  animation: none !important;
+}
+
+
+
+
+
 
 
 
