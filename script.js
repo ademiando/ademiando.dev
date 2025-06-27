@@ -34,10 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(() => {
       if (autoRotate) {
+
         angleX = 15 + 5 * Math.sin(Date.now() / 8000);
-        angleY += 0,2;
+        angleY += 0,5;
+
     //  angleX = (angleX + 0.1) % 360;
     //  angleY = (angleY + 0.3) % 360;
+
+    // const time = Date.now();
+    // angleX = 15 + 5 * Math.sin(time / 8000);
+    // angleY = 15 + 10 * Math.sin(time / 10000);
 
         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
       }
