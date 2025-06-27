@@ -36,8 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
       if (autoRotate) {
     //  angleX = 15 + 5 * Math.sin(Date.now() / 5000);
     //  angleY += 1;
-        angleX = (angleX + 0.2) % 360;
-        angleY = (angleY + 1) % 360;
+    //  angleX = (angleX + 0.2) % 360;
+    //  angleY = (angleY + 1) % 360;
+        angleX = (angleX + 0.1) % 360;
+        angleY = (angleY + 0.3) % 360;
 
         cube.style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
       }
