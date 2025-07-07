@@ -109,124 +109,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
  
 
- 
-  // Initialize Particles.js warna hijau
-  particlesJS('particles-js', {
-    particles: {
-      number: {
-        value: 40, // 80,
-        density: {
-          enable: true,
-          value_area: 800
-        }
-      },
-      color: {
-        value: '#39FF14' // hijau neon
-      },
-      shape: {
-        type: 'circle',
-        stroke: {
-          width: 0,
-          color: '#000000'
-        }
-      },
-      opacity: {
-        value: 0.8, // Tingkatan opacity
-        random: true,
-        anim: {
-          enable: true,
-          speed: 1,
-          opacity_min: 0.3, // Minimal opacity
-          sync: false
-        }
-      },
-      size: {
-        value: 3,
-        random: true,
-        anim: {
-          enable: true,
-          speed: 3,
-          size_min: 0.1,
-          sync: false
-        }
-      },
-      line_linked: {
-        enable: true,
-        distance: 150,
-        color: '#39FF14', // Hijau neon
-        opacity: 0.4,    // Opacity garis
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 1,
-        direction: 'none',
-        random: true,
-        straight: false,
-        out_mode: 'out',
-        bounce: false,
-        attract: {
-          enable: false,
-          rotateX: 600,
-          rotateY: 1200
-        }
-      }
-    },
-    interactivity: {
-      detect_on: 'canvas',
-      events: {
-        onhover: {
-          enable: true,
-          mode: 'grab'
-        },
-        onclick: {
-          enable: true,
-          mode: 'push'
-        },
-        resize: true
-      },
-      modes: {
-        grab: {
-          distance: 140,
-          line_linked: {
-            opacity: 1
-          }
-        },
-        push: {
-          particles_nb: 4
-        }
-      }
-    },
-    retina_detect: true
-  });
 
-  // CSS untuk efek glow pada partikel
-  const style = document.createElement('style');
-  style.innerHTML = `
-    #particles-js canvas {
-      filter: 
-        drop-shadow(0 0 2px #39FF14)
-        drop-shadow(0 0 5px #39FF14)
-        drop-shadow(0 0 15px #39FF14);
-      animation: glow-pulse 2s infinite alternate;
-    }
-    
-    @keyframes glow-pulse {
-      0% { 
-        filter: 
-          drop-shadow(0 0 2px #39FF14)
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 15px #39FF14);
-      }
-      100% { 
-        filter: 
-          drop-shadow(0 0 5px #39FF14)
-          drop-shadow(0 0 10px #39FF14)
-          drop-shadow(0 0 25px #39FF14);
-      }
-    }
-  `;
-  document.head.appendChild(style);
+
+
+
+
+
+
+ 
+  
 
 
   // Smooth scrolling for anchor links
